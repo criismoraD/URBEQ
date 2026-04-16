@@ -364,7 +364,8 @@ input {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(242, 106, 27, 0.4);
+    background: linear-gradient(135deg, var(--primary), var(--primary-container));
 }
 
 .btn-primary:active {
@@ -785,7 +786,8 @@ input {
 
 .project-card:hover {
     border-color: rgba(0, 0, 0, 0.3);
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
 }
 
 .project-image {
@@ -798,6 +800,11 @@ input {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.08);
 }
 
 .project-badges {
@@ -1592,6 +1599,7 @@ input {
     box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
     z-index: 50;
     transition: all 0.3s;
+    animation: float 4s ease-in-out infinite;
 }
 
 .floating-btn::after {
@@ -2352,4 +2360,111 @@ input {
     .project-features-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+/* ============================================
+   ADVANCED ANIMATIONS
+   ============================================ */
+
+/* Keyframes */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Base Animation Classes */
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+    animation-fill-mode: forwards;
+}
+
+/* Specific Animations */
+.animate-fade-up {
+    /* Initially hide */
+    opacity: 0;
+}
+.animate-fade-up.is-visible {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+    opacity: 0;
+    transform: scale(0.95);
+}
+.animate-scale-up.is-visible {
+    animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+.animate-slide-left.is-visible {
+    animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(30px);
+}
+.animate-slide-right.is-visible {
+    animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Graceful degradation for users without JS */
+noscript .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
 }

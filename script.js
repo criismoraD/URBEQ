@@ -389,7 +389,8 @@ function initScrollAnimations() {
         '.why-us-image, .why-us-content, .stats-card, .stat-item, ' +
         '.pf-card, .pricing-card, .gallery-main, .gallery-thumbs, ' +
         '.calc-form, .calc-summary, .article-body h2, .article-body .article-tip, ' +
-        '.section-header, .education-header, .footer-grid'
+        '.section-header, .education-header, .footer-grid, ' +
+        '.animate-on-scroll'
     );
 
     const observerOptions = {
@@ -400,17 +401,15 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     animatedElements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = `opacity 0.6s ease ${index % 4 * 0.1}s, transform 0.6s ease ${index % 4 * 0.1}s`;
+        // Delay is set via CSS variables for cleaner markup
+        element.style.setProperty('--anim-delay', `${(index % 4) * 0.1}s`);
         observer.observe(element);
     });
 
