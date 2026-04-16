@@ -1,4 +1,7 @@
 ## Estado Actual
+- Se refinó el tono del copy: combinando cercanía popular ("pal' gran paso", "al toque") con atributos de calidad y confianza ("garantía URBEQ", "100% legal").
+- Se actualizaron todos los textos comerciales para incluir "Lotes y Casas" en lugar de referirse únicamente a uno de ellos.
+- Se ajustaron metadatos de SEO, títulos de página y mensajes de WhatsApp para reflejar la oferta dual.
 - Se restauró la estructura completa de tarjetas destacadas en `index.html`: leyendas de estado, datos de ubicación/precio y botón de acción por tarjeta.
 - Se retiró nuevamente el botón "VER LOTES" del encabezado de la sección destacada (a pedido del usuario).
 - La imagen de cada tarjeta quedó clickeable hacia su proyecto mediante `data-href` + JavaScript, manteniendo el botón "VER PROYECTO".
@@ -31,6 +34,11 @@
 - Se reforzó el naranja (#F26A1B) como tono dominante también en el tema oscuro.
 
 ## Tareas Completadas
+- Se mejoró el encabezado de contacto y CTA: "¿Listo pal' gran paso? Tu lote o casa con garantía URBEQ".
+- Se ajustó el título de proyectos destacados: "Tu lote o casa propia, al toque y 100% legal".
+- Se reemplazaron términos como "lote" o "casa" por expresiones inclusivas ("Lotes y Casas", "Lote o Casa") en todos los HTML y script.js.
+- Se actualizaron los enlaces de WhatsApp con mensajes predeterminados que mencionan ambos productos.
+- Se ajustaron los metadatos (title, description) para SEO con la nueva terminología.
 - Se eliminó el botón "VER LOTES" junto al título "Tu lote al toque en el norte", manteniendo intactas las tarjetas.
 - Se devolvió la UI completa del apartado de proyectos destacados (leyendas, datos y botón por tarjeta), según referencia visual del usuario.
 - Se implementó `initProjectImageLinks` en `script.js` para navegación por clic/teclado sobre imágenes con `data-href`.

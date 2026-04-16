@@ -562,7 +562,7 @@ function initFloatingButton() {
         });
 
         // Update href for WhatsApp
-        floatingBtn.href = 'https://wa.me/51987654321?text=Hola%20URBEQ,%20quiero%20información%20sobre%20los%20lotes';
+        floatingBtn.href = 'https://wa.me/51987654321?text=Hola%20URBEQ,%20quiero%20información%20sobre%20lotes%20y%20casas';
         floatingBtn.target = '_blank';
     }
 }
