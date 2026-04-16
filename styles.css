@@ -497,10 +497,11 @@ input {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     background-color: transparent;
-    /* Allow hero background image to show */
-    padding-bottom: 4rem;
+    padding-bottom: 0;
 }
 
 .hero-background {
@@ -510,29 +511,82 @@ input {
     overflow: hidden;
 }
 
-.hero-background img,
-.hero-background video {
+.hero-carousel {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-overlay {
+.hero-slide {
     position: absolute;
     inset: 0;
-    display: none;
-    /* No overlay required; show original image */
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    z-index: 5;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.hero-slide img,
+.hero-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+/* Hero Controls */
+.hero-ctrl {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(8px);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-ctrl:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.hero-prev {
+    left: 1.5rem;
+}
+
+.hero-next {
+    right: 1.5rem;
+}
+
+.hero-ctrl .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+@media (max-width: 767px) {
+    .hero-ctrl {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
 }
 
 .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 20;
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -577,17 +631,22 @@ input {
     max-width: 32rem;
 }
 
-/* Search Container */
+/* Search Container Area */
 .search-container {
     background-color: var(--surface-container-lowest);
-    padding: 0.75rem;
+    padding: 0.75rem 1.5rem;
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-editorial);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    max-width: 56rem;
-    border: 1px solid rgba(139, 98, 15, 0.974);
+    width: 90%;
+    max-width: 1120px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%); /* Centrado absoluto y superpuesto */
+    z-index: 1000;
 }
 
 .search-field {
@@ -778,22 +837,32 @@ input {
 
 .project-card {
     background-color: var(--surface-container-lowest);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     overflow: hidden;
+    border: 1px solid var(--outline-variant);
     box-shadow: var(--shadow-popular);
-    transition: all 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
-    border-color: rgba(0, 0, 0, 0.3);
     transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    background-color: var(--surface-container-low);
 }
 
 .project-image {
     position: relative;
     height: 16rem;
     overflow: hidden;
+    display: block; /* Para que el enlace ocupe todo el espacio */
+}
+
+.project-image-link {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .project-image img {
@@ -1126,9 +1195,11 @@ input {
    TESTIMONIALS SECTION — Infinite Marquee
    ============================================ */
 .testimonials {
-    padding: 4rem 0 5rem;
+    padding: 6.5rem 0 5rem;
     background-color: var(--surface-container);
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .testimonials-header {
@@ -1188,6 +1259,8 @@ input {
         /* Move exactly half the track (7 cards worth) */
         transform: translateX(-50%);
     }
+}
+
 }
 
 .testimonial-card {

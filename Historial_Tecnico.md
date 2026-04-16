@@ -25,6 +25,9 @@
 - Se aplicó lógica global para que el cambio alcance todas las páginas sin editar cada HTML manualmente.
 - Se corrigió el parpadeo inicial en móvil (texto/logo antiguos) antes de cargar la versión final.
 - Se rediseñó el tema claro con base naranja y mezcla de grises/turquesas para evaluación estética.
+- Se habilitó clic en toda la tarjeta (`.project-card`) para navegar a la página del proyecto.
+- Se mejoraron los estilos de hover en tarjetas: elevación (-8px) y cambio de fondo sutil.
+- Se posicionó el buscador como un "parche" absoluto (`position: absolute; bottom: 0`) para unir visualmente el Hero y Testimonios.
 - Se reforzó el naranja (#F26A1B) como tono dominante también en el tema oscuro.
 
 ## Tareas Completadas
@@ -57,6 +60,9 @@
 - Implementación de `initGlobalNavAndLogos` en `script.js` para normalizar iconos móviles y variantes de logo (header/footer) en todo el sitio.
 - Añadida clase `mobile-nav-ready` + reglas CSS para ocultar estado intermedio y evitar flash en transición entre páginas.
 - Ajuste de variables `:root[data-theme='light']` para eliminar extremos y dar un look más equilibrado.
+- Se inicializó el repositorio Git local y se creó el repositorio remoto en GitHub (`criismoraD/URBEQ`) usando GitHub CLI.
+- Se configuró el archivo `.gitignore` para omitir archivos temporales y del sistema.
+- Se realizó el primer commit y push exitoso de todo el proyecto a la rama `master`.
 - Se adelgazó la cabecera reduciendo el padding de `.nav-container` (1rem -> 0.6rem) y altura de logo (4rem -> 2.8rem).
 - Se eliminaron los márgenes superiores manuales (`margin-top`) en botones de la cabecera para asegurar un centrado vertical perfecto mediante flexbox.
 - Se ajustó el posicionamiento del `.search-container` en el hero de `index.html` de centro absoluto a centro inferior (`align-items: flex-end`).

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>URBEQ | Terrenos y Lotes en Lambayeque</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="styles.css?v=1.2" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="styles.css?v=1.2" rel="stylesheet" />
 </head>
 
 
@@ -19,19 +22,25 @@
             <div class="logo">
                 <a href="index.html">
                     <!-- Logo por defecto (modo claro desktop) -->
-                    <img class="logo-default" alt="URBEQ" src="img/PNG NARANJA Y GRIS.png" style="display: block;"/>
+                    <img class="logo-default" alt="URBEQ" src="img/PNG NARANJA Y GRIS.png" style="display: block;" />
                     <!-- Logo para modo oscuro -->
-                    <img class="logo-dark" alt="URBEQ" src="img/LOGO BLANCO NARANJA.png" style="display: none;"/>
+                    <img class="logo-dark" alt="URBEQ" src="img/LOGO BLANCO NARANJA.png" style="display: none;" />
                     <!-- Logo para móvil (cualquier tema) -->
-                    <img class="logo-mobile" alt="URBEQ" src="img/ISOTIPO NARANJA.png" style="display: none;"/>
+                    <img class="logo-mobile" alt="URBEQ" src="img/ISOTIPO NARANJA.png" style="display: none;" />
                 </a>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="active"><span class="material-symbols-outlined nav-icon">home</span><span class="nav-label">Inicio</span></a>
-                <a href="proyectos.html"><span class="material-symbols-outlined nav-icon">domain</span><span class="nav-label">Proyectos</span></a>
-                <a href="nosotros.html"><span class="material-symbols-outlined nav-icon">groups</span><span class="nav-label">Nosotros</span></a>
-                <a href="educacion.html"><span class="material-symbols-outlined nav-icon">school</span><span class="nav-label">Educación</span></a>
-                <a href="cotizacion.html" class="mobile-cta"><span class="material-symbols-outlined nav-icon">request_quote</span><span class="nav-label">Cotiza</span></a>
+                <a href="index.html" class="active"><span class="material-symbols-outlined nav-icon">home</span><span
+                        class="nav-label">Inicio</span></a>
+                <a href="proyectos.html"><span class="material-symbols-outlined nav-icon">domain</span><span
+                        class="nav-label">Proyectos</span></a>
+                <a href="nosotros.html"><span class="material-symbols-outlined nav-icon">groups</span><span
+                        class="nav-label">Nosotros</span></a>
+                <a href="educacion.html"><span class="material-symbols-outlined nav-icon">school</span><span
+                        class="nav-label">Educación</span></a>
+                <a href="cotizacion.html" class="mobile-cta"><span
+                        class="material-symbols-outlined nav-icon">request_quote</span><span
+                        class="nav-label">Cotiza</span></a>
             </div>
             <div class="nav-actions">
                 <a href="cotizacion.html" class="btn-primary" style="text-decoration:none;">
@@ -49,38 +58,50 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-background">
-            <picture>
-                <source media="(max-width: 767px)" srcset="Baner_Telefono.jpg">
-                <source media="(min-width: 768px)" srcset="Baner01.webp">
-                <img alt="Familia disfrutando su nuevo terreno" src="Baner01.webp">
-            </picture>
+            <div class="hero-carousel">
+                <div class="hero-slide active" data-duration="5000">
+                    <img src="heo1.jpeg" alt="URBEQ - Tu lote en el norte">
+                </div>
+                <div class="hero-slide" data-duration="5000">
+                    <img src="hero2.jpeg" alt="URBEQ - Cumple tus sueños">
+                </div>
+                <div class="hero-slide" data-duration="10000">
+                    <video autoplay muted playsinline id="hero-vid">
+                        <source src="hero.webm" type="video/webm">
+                    </video>
+                </div>
+                <!-- Manual Controls -->
+                <button class="hero-ctrl hero-prev" aria-label="Anterior">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="hero-ctrl hero-next" aria-label="Siguiente">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
             <div class="hero-overlay"></div>
         </div>
-        <div class="hero-content animate-on-scroll animate-fade-up">
-            <div class="hero-text">
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <div class="search-field">
-                        <label>Ubicación</label>
-                        <select>
-                            <option>Todo el norte</option>
-                            <option>Chiclayo y Lambayeque</option>
-                            <option>Pimentel, cerquita a la playa</option>
-                            <option>Reque, sur de Chiclayo</option>
-                            <option>Monsefú</option>
-                        </select>
-                    </div>
-                    <div class="search-divider"></div>
-                    <div class="search-field search-field-slider">
-                        <label>Buscar</label>
-                        <input type="text" class="budget-text-input" id="searchQuery" placeholder="Ej: Pimentel, lote listo"/>
-                    </div>
-                    <button class="btn-search">
-                        <span class="material-symbols-outlined">search</span>
-                        Buscar
-                    </button>
-                </div>
+        <!-- Search Bar Superpuesto -->
+        <div class="search-container">
+            <div class="search-field">
+                <label>Ubicación</label>
+                <select>
+                    <option>Todo el norte</option>
+                    <option>Chiclayo y Lambayeque</option>
+                    <option>Pimentel, cerquita a la playa</option>
+                    <option>Reque, sur de Chiclayo</option>
+                    <option>Monsefú</option>
+                </select>
             </div>
+            <div class="search-divider"></div>
+            <div class="search-field search-field-slider">
+                <label>Buscar</label>
+                <input type="text" class="budget-text-input" id="searchQuery"
+                    placeholder="Ej: Pimentel, lote listo" />
+            </div>
+            <button class="btn-search">
+                <span class="material-symbols-outlined">search</span>
+                Buscar
+            </button>
         </div>
     </header>
 
@@ -90,16 +111,16 @@
             <div class="section-header animate-on-scroll animate-slide-left">
                 <div>
                     <h2>Tu lote al toque en <span class="highlight">el norte</span></h2>
-                    
+
                 </div>
             </div>
 
             <div class="projects-grid">
                 <!-- Project Card 1: Pimentel -->
                 <div class="project-card animate-on-scroll animate-fade-up">
-                    <div class="project-image project-image-link" data-href="proyecto-palma-real.html" role="link" tabindex="0" aria-label="Ver proyecto Palma Real">
-                        <img alt="Villa Sol Pimentel" src="Proyectos/Palma_real_1.webp"/>
-                    </div>
+                    <a href="proyecto-palma-real.html" class="project-image project-image-link" aria-label="Ver proyecto Palma Real">
+                        <img alt="Villa Sol Pimentel" src="Proyectos/Palma_real_1.webp" />
+                    </a>
                     <div class="project-info">
                         <div class="project-location">
                             <span class="material-symbols-outlined">location_on</span>
@@ -116,15 +137,16 @@
                                 <p class="price-total">S/ 85,000</p>
                             </div>
                         </div>
-                        <a href="proyecto-palma-real.html" class="btn-request" style="display:block;text-align:center;text-decoration:none;">VER PROYECTO</a>
+                        <a href="proyecto-palma-real.html" class="btn-request"
+                            style="display:block;text-align:center;text-decoration:none;">VER PROYECTO</a>
                     </div>
                 </div>
 
                 <!-- Project Card 2: Reque -->
                 <div class="project-card animate-on-scroll animate-fade-up">
-                    <div class="project-image project-image-link" data-href="proyecto-requemar.html" role="link" tabindex="0" aria-label="Ver proyecto Reque Mar">
-                        <img alt="Praderas de Reque" src="Proyectos/requemar_1.webp"/>
-                    </div>
+                    <a href="proyecto-requemar.html" class="project-image project-image-link" aria-label="Ver proyecto Reque Mar">
+                        <img alt="Praderas de Reque" src="Proyectos/requemar_1.webp" />
+                    </a>
                     <div class="project-info">
                         <div class="project-location">
                             <span class="material-symbols-outlined">location_on</span>
@@ -141,7 +163,8 @@
                                 <p class="price-total">S/ 72,000</p>
                             </div>
                         </div>
-                        <a href="proyecto-requemar.html" class="btn-request" style="display:block;text-align:center;text-decoration:none;">VER PROYECTO</a>
+                        <a href="proyecto-requemar.html" class="btn-request"
+                            style="display:block;text-align:center;text-decoration:none;">VER PROYECTO</a>
                     </div>
                 </div>
 
@@ -156,14 +179,15 @@
             <div class="why-us-grid">
                 <div class="why-us-image">
                     <div class="image-wrapper">
-                        <img alt="Nuestra historia" src="somos.jpg"/>
+                        <img alt="Nuestra historia" src="somos.jpg" />
                     </div>
                 </div>
                 <div class="why-us-content">
                     <span class="section-label">🤝 Somos de acá</span>
                     <h2>Somos del norte y te ayudamos a sacar tu <span class="highlight">lote</span></h2>
                     <p>
-                        Estamos en Chiclayo y Lambayeque. Te ayudamos sin enredos, con papeles claros y cuotas que sí te caben.
+                        Estamos en Chiclayo y Lambayeque. Te ayudamos sin enredos, con papeles claros y cuotas que sí te
+                        caben.
                     </p>
                     <div class="features-grid">
                         <div class="feature">
@@ -206,7 +230,7 @@
             <div class="testimonials-header">
                 <div>
                     <span class="section-label">💬 Testimonios</span>
-                    <h2>Familias norteñas ya tienen su <span class="brand">lote</span></h2>
+                    <h2>Familias norteñas ya tienen su Nuevo <span class="brand">Hogar</span></h2>
                 </div>
             </div>
         </div>
@@ -216,7 +240,7 @@
                 <!-- SET 1: Original 7 testimonials -->
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Quispe" class="testimonial-avatar" src="Stock/testimonios (1).jpeg"/>
+                        <img alt="Familia Quispe" class="testimonial-avatar" src="Stock/testimonios (1).jpeg" />
                         <p class="testimonial-text">
                             "Compramos nuestro lote y todo fue claro, sin vueltas."
                         </p>
@@ -229,7 +253,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sra. Elena Rodriguez" class="testimonial-avatar" src="Stock/testimonios (2).jpeg"/>
+                        <img alt="Sra. Elena Rodriguez" class="testimonial-avatar" src="Stock/testimonios (2).jpeg" />
                         <p class="testimonial-text">
                             "Me gustó que todo esté legal. Ya tengo mi título y estoy tranquila."
                         </p>
@@ -242,7 +266,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Mendoza" class="testimonial-avatar" src="Stock/testimonios (3).jpeg"/>
+                        <img alt="Familia Mendoza" class="testimonial-avatar" src="Stock/testimonios (3).jpeg" />
                         <p class="testimonial-text">
                             "La cuota nos acomodó y ya separamos nuestro terreno."
                         </p>
@@ -255,7 +279,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Castro" class="testimonial-avatar" src="Stock/testimonios (1).png"/>
+                        <img alt="Familia Castro" class="testimonial-avatar" src="Stock/testimonios (1).png" />
                         <p class="testimonial-text">
                             "Nos guiaron en todo, de frente y con paciencia."
                         </p>
@@ -268,7 +292,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sr. Luis Vega" class="testimonial-avatar" src="Stock/testimonios (2).png"/>
+                        <img alt="Sr. Luis Vega" class="testimonial-avatar" src="Stock/testimonios (2).png" />
                         <p class="testimonial-text">
                             "Entrega puntual y papeles claros. Ya pensamos en construir."
                         </p>
@@ -281,7 +305,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Torres" class="testimonial-avatar" src="Stock/testimonios (3).png"/>
+                        <img alt="Familia Torres" class="testimonial-avatar" src="Stock/testimonios (3).png" />
                         <p class="testimonial-text">
                             "Desde la primera visita nos hablaron claro, sin letra chica."
                         </p>
@@ -294,7 +318,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sra. Diana Paredes" class="testimonial-avatar" src="Stock/testimonios (4).jpeg"/>
+                        <img alt="Sra. Diana Paredes" class="testimonial-avatar" src="Stock/testimonios (4).jpeg" />
                         <p class="testimonial-text">
                             "El plan fue justo y ya avanzamos con la casa."
                         </p>
@@ -308,7 +332,7 @@
                 <!-- SET 2: Duplicate for seamless loop -->
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Quispe" class="testimonial-avatar" src="Stock/testimonios (1).jpeg"/>
+                        <img alt="Familia Quispe" class="testimonial-avatar" src="Stock/testimonios (1).jpeg" />
                         <p class="testimonial-text">
                             "Compramos nuestro lote y todo fue claro, sin vueltas."
                         </p>
@@ -321,7 +345,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sra. Elena Rodriguez" class="testimonial-avatar" src="Stock/testimonios (2).jpeg"/>
+                        <img alt="Sra. Elena Rodriguez" class="testimonial-avatar" src="Stock/testimonios (2).jpeg" />
                         <p class="testimonial-text">
                             "Me gustó que todo esté legal. Ya tengo mi título y estoy tranquila."
                         </p>
@@ -334,7 +358,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Mendoza" class="testimonial-avatar" src="Stock/testimonios (3).jpeg"/>
+                        <img alt="Familia Mendoza" class="testimonial-avatar" src="Stock/testimonios (3).jpeg" />
                         <p class="testimonial-text">
                             "La cuota nos acomodó y ya separamos nuestro terreno."
                         </p>
@@ -347,7 +371,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Castro" class="testimonial-avatar" src="Stock/testimonios (1).png"/>
+                        <img alt="Familia Castro" class="testimonial-avatar" src="Stock/testimonios (1).png" />
                         <p class="testimonial-text">
                             "Nos guiaron en todo, de frente y con paciencia."
                         </p>
@@ -360,7 +384,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sr. Luis Vega" class="testimonial-avatar" src="Stock/testimonios (2).png"/>
+                        <img alt="Sr. Luis Vega" class="testimonial-avatar" src="Stock/testimonios (2).png" />
                         <p class="testimonial-text">
                             "Entrega puntual y papeles claros. Ya pensamos en construir."
                         </p>
@@ -373,7 +397,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Familia Torres" class="testimonial-avatar" src="Stock/testimonios (3).png"/>
+                        <img alt="Familia Torres" class="testimonial-avatar" src="Stock/testimonios (3).png" />
                         <p class="testimonial-text">
                             "Desde la primera visita nos hablaron claro, sin letra chica."
                         </p>
@@ -386,7 +410,7 @@
 
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
-                        <img alt="Sra. Diana Paredes" class="testimonial-avatar" src="Stock/testimonios (4).jpeg"/>
+                        <img alt="Sra. Diana Paredes" class="testimonial-avatar" src="Stock/testimonios (4).jpeg" />
                         <p class="testimonial-text">
                             "El plan fue justo y ya avanzamos con la casa."
                         </p>
@@ -411,7 +435,7 @@
             <div class="education-grid">
                 <a href="educacion-guia-compra.html" class="education-card animate-on-scroll animate-fade-up">
                     <div class="education-card-image">
-                        <img alt="Guía de compra de terrenos" src="Stock/guia_compra.png"/>
+                        <img alt="Guía de compra de terrenos" src="Stock/guia_compra.png" />
                         <div class="education-card-overlay"></div>
                     </div>
                     <div class="education-card-body">
@@ -422,7 +446,7 @@
                 </a>
                 <a href="educacion-plusvalia-reque.html" class="education-card animate-on-scroll animate-fade-up">
                     <div class="education-card-image">
-                        <img alt="Plusvalía en Reque" src="Stock/plusvalia_reque.png"/>
+                        <img alt="Plusvalía en Reque" src="Stock/plusvalia_reque.png" />
                         <div class="education-card-overlay"></div>
                     </div>
                     <div class="education-card-body">
@@ -433,7 +457,7 @@
                 </a>
                 <a href="educacion-tramites-legales.html" class="education-card animate-on-scroll animate-fade-up">
                     <div class="education-card-image">
-                        <img alt="Trámites legales" src="Stock/tramites_legales.png"/>
+                        <img alt="Trámites legales" src="Stock/tramites_legales.png" />
                         <div class="education-card-overlay"></div>
                     </div>
                     <div class="education-card-body">
@@ -444,7 +468,7 @@
                 </a>
                 <a href="educacion-tipos-lotes.html" class="education-card animate-on-scroll animate-fade-up">
                     <div class="education-card-image">
-                        <img alt="Tipos de lotes" src="Stock/tipos_lotes.png"/>
+                        <img alt="Tipos de lotes" src="Stock/tipos_lotes.png" />
                         <div class="education-card-overlay"></div>
                     </div>
                     <div class="education-card-body">
@@ -469,21 +493,21 @@
                         <div class="form-row">
                             <div class="form-field">
                                 <label>Nombre y apellido</label>
-                                <input type="text" placeholder="Ej: Juan Pérez"/>
+                                <input type="text" placeholder="Ej: Juan Pérez" />
                             </div>
                             <div class="form-field">
                                 <label>DNI / CE</label>
-                                <input type="text" placeholder="8 dígitos"/>
+                                <input type="text" placeholder="8 dígitos" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-field">
                                 <label>Correo</label>
-                                <input type="email" placeholder="juan@email.com"/>
+                                <input type="email" placeholder="juan@email.com" />
                             </div>
                             <div class="form-field">
                                 <label>Celular / WhatsApp</label>
-                                <input type="tel" placeholder="+51 987 654 321"/>
+                                <input type="tel" placeholder="+51 987 654 321" />
                             </div>
                         </div>
                         <div class="form-field">
@@ -509,19 +533,38 @@
                     <div class="footer-logo">
                         <a href="index.html">
                             <!-- Logo por defecto (modo claro desktop) -->
-                            <img class="footer-logo-default" alt="URBEQ" src="img/PNG NARANJA Y GRIS.png" style="display: block;"/>
+                            <img class="footer-logo-default" alt="URBEQ" src="img/PNG NARANJA Y GRIS.png"
+                                style="display: block;" />
                             <!-- Logo para modo oscuro -->
-                            <img class="footer-logo-dark" alt="URBEQ" src="img/LOGO BLANCO NARANJA.png" style="display: none;"/>
+                            <img class="footer-logo-dark" alt="URBEQ" src="img/LOGO BLANCO NARANJA.png"
+                                style="display: none;" />
                             <!-- Logo para móvil (cualquier tema) -->
-                            <img class="footer-logo-mobile" alt="URBEQ" src="img/ISOTIPO NARANJA.png" style="display: none;"/>
+                            <img class="footer-logo-mobile" alt="URBEQ" src="img/ISOTIPO NARANJA.png"
+                                style="display: none;" />
                         </a>
                     </div>
                     <p>Somos del norte y ayudamos a familias peruanas a sacar su lote con confianza.</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                        <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-                        <a href="#" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
-                        <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                        <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg></a>
+                        <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg></a>
+                        <a href="#" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                            </svg></a>
+                        <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -556,9 +599,13 @@
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/51987654321" target="_blank" class="floating-btn" aria-label="Escríbenos por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
     </a>
 
     <script src="script.js"></script>
 </body>
+
 </html>

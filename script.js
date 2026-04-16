@@ -176,8 +176,8 @@ function initThemeToggle() {
         }
     }
 
-    // Default theme requested by user: dark on load
-    applyTheme('dark');
+    // Default theme: light on load
+    applyTheme('light');
 
     themeBtn.addEventListener('click', () => {
         const currentTheme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
@@ -729,24 +729,25 @@ function initProjectImageHover() {
 }
 
 // ============================================
-// 11. Project Image Click Navigation
+// 11. Project Card Full Click Navigation
 // ============================================
 function initProjectImageLinks() {
-    const imageLinks = document.querySelectorAll('.project-image[data-href]');
+    const cards = document.querySelectorAll('.project-card');
 
-    imageLinks.forEach(imageLink => {
-        const targetHref = imageLink.getAttribute('data-href');
-        if (!targetHref) return;
+    cards.forEach(card => {
+        // Encontrar el enlace dentro de la tarjeta (sea la imagen o el botón)
+        const link = card.querySelector('a');
+        if (!link) return;
 
-        imageLink.addEventListener('click', () => {
+        const targetHref = link.getAttribute('href');
+        
+        card.style.cursor = 'pointer';
+        
+        card.addEventListener('click', (e) => {
+            // Si el usuario hizo clic en un botón que ya es un link, dejar que el navegador lo maneje
+            if (e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') return;
+            
             window.location.href = targetHref;
-        });
-
-        imageLink.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                window.location.href = targetHref;
-            }
         });
     });
 }
@@ -801,6 +802,9 @@ function initProjectGallery() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🏘️ URBEQ - Initializing...');
 
+    // Prioridad: Carrusel Hero (Debug activado)
+    initHeroCarousel();
+
     initMobileMenu();
     initGlobalNavAndLogos();
     initThemeToggle();
@@ -819,6 +823,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('✅ URBEQ - All features loaded!');
 });
+
+// ============================================
+// 11. Hero Carousel (Video + Images) - MANUAL & AUTO
+// ============================================
+function initHeroCarousel() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const btnPrev = document.querySelector('.hero-prev');
+    const btnNext = document.querySelector('.hero-next');
+    
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    let timeoutId = null;
+
+    function showSlide(index) {
+        // Limpiar timeout pendiente para evitar cambios dobles
+        if (timeoutId) clearTimeout(timeoutId);
+
+        console.log('Hero: Cambiando de', currentIndex, 'a', index);
+
+        // Pausar video actual si existe
+        const currentVideo = slides[currentIndex].querySelector('video');
+        if (currentVideo) currentVideo.pause();
+
+        // Cambiar clases
+        slides[currentIndex].classList.remove('active');
+        currentIndex = index;
+        slides[currentIndex].classList.add('active');
+
+        // Reiniciar video si el nuevo slide tiene uno
+        const nextVideo = slides[currentIndex].querySelector('video');
+        if (nextVideo) {
+            nextVideo.currentTime = 0;
+            nextVideo.play().catch(e => console.warn('Hero: Play bloqueado', e));
+        }
+
+        // Programar siguiente cambio automático
+        const duration = parseInt(slides[currentIndex].getAttribute('data-duration') || 5000);
+        timeoutId = setTimeout(() => {
+            const nextIdx = (currentIndex + 1) % slides.length;
+            showSlide(nextIdx);
+        }, duration);
+    }
+
+    // Eventos Manuales
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            const nextIdx = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(nextIdx);
+        });
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            const nextIdx = (currentIndex + 1) % slides.length;
+            showSlide(nextIdx);
+        });
+    }
+
+    // Clic en el slide completo para avanzar
+    slides.forEach((slide) => {
+        slide.style.cursor = 'pointer';
+        slide.addEventListener('click', () => {
+            const nextIdx = (currentIndex + 1) % slides.length;
+            showSlide(nextIdx);
+        });
+    });
+
+    // Iniciar con el primer slide
+    const initialDuration = parseInt(slides[0].getAttribute('data-duration') || 5000);
+    timeoutId = setTimeout(() => {
+        showSlide(1);
+    }, initialDuration);
+}
 
 // Optional: Add loading animation
 window.addEventListener('load', () => {
