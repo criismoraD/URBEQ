@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cotización - URBEQ | Calcula tu Cuota</title>
+    <meta name="description"
+        content="Calcula tu cuota mensual para comprar un terreno con URBEQ. Simulador de financiamiento directo sin intereses.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html"><img src="LOGO_URBEQ.webp" alt="URBEQ"></a></div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="educacion.html">Educación</a>
+                <a href="cotizacion.html" class="mobile-cta"><span class="material-symbols-outlined">request_quote</span> Cotización</a>
+            </div>
+            <div class="nav-actions">
+                <a href="cotizacion.html" class="btn-primary" style="text-decoration:none;">
+                    <span class="material-symbols-outlined">request_quote</span> Cotización
+                </a>
+                <button class="btn-menu"><span class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="project-detail-hero"
+        style="background-image: linear-gradient(rgba(28,25,23,0.65), rgba(28,25,23,0.85)), url('Proyectos/Palma_real_5.webp');">
+        <span class="section-label">🧮 Simulador</span>
+        <h1>Calcula tu Cuota</h1>
+        <p>Simula tu financiamiento directo sin intereses. Elige tu proyecto y descubre cuánto pagarías al mes.</p>
+    </section>
+
+    <!-- CALCULADORA -->
+    <section class="calc-section">
+        <div class="container">
+            <div class="calc-grid">
+                <!-- FORMULARIO -->
+                <div class="calc-form">
+                    <h3>Configura tu inversión</h3>
+
+                    <div class="calc-field">
+                        <label for="calcProject">Proyecto</label>
+                        <select id="calcProject" onchange="calculate()">
+                            <option value="palma" data-price="85000">Palma Real — Pimentel (S/ 85,000)</option>
+                            <option value="reque" data-price="72000">Reque Mar — Reque (S/ 72,000)</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="calcArea">Área del lote (m²)</label>
+                        <input type="number" id="calcArea" value="120" min="60" max="300" step="10"
+                            onchange="calculate()" oninput="calculate()">
+                    </div>
+
+                    <div class="calc-field">
+                        <label>Cuota inicial</label>
+                        <div class="range-value" id="downDisplay">10%</div>
+                        <input type="range" id="calcDown" min="5" max="50" value="10" step="5" oninput="calculate()"
+                            style="background: linear-gradient(to right, var(--primary-container) 0%, var(--primary-container) 12.5%, var(--outline-variant) 12.5%, var(--outline-variant) 100%);">
+                        <div class="range-labels"><span>5%</span><span>50%</span></div>
+                    </div>
+
+                    <div class="calc-field">
+                        <label for="calcMonths">Plazo de pago</label>
+                        <select id="calcMonths" onchange="calculate()">
+                            <option value="12">12 meses (1 año)</option>
+                            <option value="24">24 meses (2 años)</option>
+                            <option value="36" selected>36 meses (3 años)</option>
+                            <option value="48">48 meses (4 años)</option>
+                            <option value="60">60 meses (5 años)</option>
+                            <option value="84">84 meses (7 años)</option>
+                            <option value="120">120 meses (10 años)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- RESUMEN -->
+                <div class="calc-summary">
+                    <h3>Resumen de tu Cotización</h3>
+                    <div class="calc-result-item"><span>Precio total estimado</span><strong id="resultTotal">S/
+                            85,000</strong></div>
+                    <div class="calc-result-item"><span>Cuota inicial</span><strong id="resultDown">S/ 8,500</strong>
+                    </div>
+                    <div class="calc-result-item"><span>Saldo a financiar</span><strong id="resultBalance">S/
+                            76,500</strong></div>
+                    <div class="calc-result-item highlight-result"><span>Tu cuota mensual</span><strong
+                            id="resultMonthly">S/ 2,125</strong></div>
+                    <div class="calc-result-item"><span>Plazo</span><strong id="resultTerm">36 meses</strong></div>
+                    <a id="whatsappLink" href="#" target="_blank" class="btn-request"
+                        style="display:block;text-align:center;text-decoration:none;">Solicitar esta Cotización por
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- NOTA -->
+            <div
+                style="margin-top:3rem; padding:1.5rem; background:var(--primary-fixed); border-radius:1rem; border-left:4px solid var(--primary);">
+                <p style="font-size:0.875rem; color:var(--on-primary-fixed-variant); margin:0;">
+                    <strong>📌 Nota:</strong> Esta es una simulación referencial. Los precios finales pueden variar
+                    según el lote específico.
+                    Nuestro financiamiento es <strong>directo y sin intereses</strong>. Contáctanos para una cotización
+                    personalizada.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><a href="index.html"><img alt="URBEQ" src="LOGO_URBEQ.webp" /></a></div>
+                    <p>Creando comunidades sostenibles y seguras en el norte peruano.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="proyectos.html">Proyectos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 URBEQ. Desarrollando el corazón del hogar peruano. 🇵🇪</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/51987654321?text=Hola%20URBEQ,%20quiero%20una%20cotización" target="_blank"
+        class="floating-btn" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        const projectData = {
+            palma: { name: 'Palma Real', base: 85000, refArea: 120 },
+            reque: { name: 'Reque Mar', base: 72000, refArea: 120 }
+        };
+
+        function formatCurrency(n) {
+            return 'S/ ' + Math.round(n).toLocaleString('es-PE');
+        }
+
+        function calculate() {
+            const projectKey = document.getElementById('calcProject').value;
+            const project = projectData[projectKey];
+            const area = parseInt(document.getElementById('calcArea').value) || 120;
+            const downPct = parseInt(document.getElementById('calcDown').value) || 10;
+            const months = parseInt(document.getElementById('calcMonths').value) || 36;
+
+            const pricePerM2 = project.base / project.refArea;
+            const totalPrice = Math.round(pricePerM2 * area);
+            const downPayment = Math.round(totalPrice * downPct / 100);
+            const balance = totalPrice - downPayment;
+            const monthly = Math.round(balance / months);
+
+            document.getElementById('downDisplay').textContent = downPct + '%';
+            document.getElementById('resultTotal').textContent = formatCurrency(totalPrice);
+            document.getElementById('resultDown').textContent = formatCurrency(downPayment);
+            document.getElementById('resultBalance').textContent = formatCurrency(balance);
+            document.getElementById('resultMonthly').textContent = formatCurrency(monthly);
+            document.getElementById('resultTerm').textContent = months + ' meses';
+
+            const slider = document.getElementById('calcDown');
+            const pct = ((downPct - 5) / (50 - 5)) * 100;
+            slider.style.background = `linear-gradient(to right, var(--primary-container) 0%, var(--primary-container) ${pct}%, var(--outline-variant) ${pct}%, var(--outline-variant) 100%)`;
+
+            const msg = `Hola URBEQ, me interesa el proyecto ${project.name}. Área: ${area}m², Inicial: ${downPct}% (${formatCurrency(downPayment)}), Cuota mensual: ${formatCurrency(monthly)} a ${months} meses. Precio total: ${formatCurrency(totalPrice)}.`;
+            document.getElementById('whatsappLink').href = `https://wa.me/51987654321?text=${encodeURIComponent(msg)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', calculate);
+    </script>
+</body>
+
+</html>

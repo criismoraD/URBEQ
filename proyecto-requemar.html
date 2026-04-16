@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reque Mar - URBEQ | Lotes en Reque</title>
+    <meta name="description" content="Descubre Reque Mar, lotes con entrega inmediata en Reque, zona sur de Chiclayo. Cuotas desde S/490.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+    <div class="nav-container">
+        <div class="logo"><a href="index.html"><img src="LOGO_URBEQ.webp" alt="URBEQ"></a></div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="proyectos.html" class="active">Proyectos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="educacion.html">Educación</a>
+            <a href="cotizacion.html" class="mobile-cta"><span class="material-symbols-outlined">request_quote</span> Cotización</a>
+        </div>
+        <div class="nav-actions">
+            <a href="cotizacion.html" class="btn-primary" style="text-decoration:none;">
+                <span class="material-symbols-outlined">request_quote</span> Cotización
+            </a>
+            <button class="btn-menu"><span class="material-symbols-outlined">menu</span></button>
+        </div>
+    </div>
+    <div class="nav-divider"></div>
+</nav>
+
+<!-- HERO -->
+<section class="project-detail-hero" style="background-image: linear-gradient(rgba(28,25,23,0.6), rgba(28,25,23,0.8)), url('Proyectos/requemar_3.webp');">
+    <span class="section-label">📍 Reque — Zona Sur de Chiclayo</span>
+    <h1>Reque Mar</h1>
+    <p>Lotes con entrega inmediata en una de las zonas con mayor plusvalía del sur de Chiclayo.</p>
+</section>
+
+<!-- GALERÍA -->
+<section class="project-gallery">
+    <div class="container">
+        <div class="gallery-main">
+            <img id="mainImage" src="Proyectos/requemar_1.webp" alt="Reque Mar - Vista principal">
+        </div>
+        <div class="gallery-thumbs">
+            <div class="gallery-thumb active" onclick="changeImage('Proyectos/requemar_1.webp', this)">
+                <img src="Proyectos/requemar_1.webp" alt="Vista 1">
+            </div>
+            <div class="gallery-thumb" onclick="changeImage('Proyectos/requemar_2.webp', this)">
+                <img src="Proyectos/requemar_2.webp" alt="Vista 2">
+            </div>
+            <div class="gallery-thumb" onclick="changeImage('Proyectos/requemar_3.webp', this)">
+                <img src="Proyectos/requemar_3.webp" alt="Vista 3">
+            </div>
+            <div class="gallery-thumb" onclick="changeImage('Proyectos/requemar_4.webp', this)">
+                <img src="Proyectos/requemar_4.webp" alt="Vista 4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CARACTERÍSTICAS -->
+<section class="project-features">
+    <div class="container">
+        <div class="section-header" style="text-align:center;">
+            <div>
+                <h2>¿Qué incluye <span class="highlight">Reque Mar</span>?</h2>
+                <p>Lotes listos para construir con todos los servicios básicos.</p>
+            </div>
+        </div>
+        <div class="project-features-grid">
+            <div class="pf-card">
+                <span class="material-symbols-outlined">verified</span>
+                <div><h4>Título de Propiedad</h4><p>Inscrito en SUNARP. Documentación 100% en regla.</p></div>
+            </div>
+            <div class="pf-card">
+                <span class="material-symbols-outlined">water_drop</span>
+                <div><h4>Agua y Desagüe</h4><p>Redes de agua potable y alcantarillado habilitadas.</p></div>
+            </div>
+            <div class="pf-card">
+                <span class="material-symbols-outlined">bolt</span>
+                <div><h4>Red Eléctrica</h4><p>Sistema eléctrico soterrado de alta calidad.</p></div>
+            </div>
+            <div class="pf-card">
+                <span class="material-symbols-outlined">trending_up</span>
+                <div><h4>Alta Plusvalía</h4><p>Zona sur de Chiclayo con crecimiento acelerado.</p></div>
+            </div>
+            <div class="pf-card">
+                <span class="material-symbols-outlined">directions_car</span>
+                <div><h4>Pistas y Veredas</h4><p>Accesos amplios pavimentados con iluminación.</p></div>
+            </div>
+            <div class="pf-card">
+                <span class="material-symbols-outlined">check_circle</span>
+                <div><h4>Entrega Inmediata</h4><p>Lotes disponibles para construir desde hoy.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRECIOS -->
+<section class="project-pricing-section">
+    <div class="container">
+        <div class="pricing-card">
+            <h3>Precio desde</h3>
+            <div class="big-price">S/ 72,000</div>
+            <div class="sub-price">Precio total del lote</div>
+            <div class="pricing-details">
+                <div class="pricing-detail-item"><span>Cuota mensual</span><strong>S/ 490</strong></div>
+                <div class="pricing-detail-item"><span>Inicial desde</span><strong>10%</strong></div>
+                <div class="pricing-detail-item"><span>Ubicación</span><strong>Reque</strong></div>
+                <div class="pricing-detail-item"><span>Estado</span><strong>Entrega Inmediata</strong></div>
+            </div>
+            <a href="cotizacion.html" class="btn-request" style="display:block;text-align:center;text-decoration:none;">Calcular mi Cuota</a>
+        </div>
+    </div>
+</section>
+
+<!-- UBICACIÓN Y VISTA 360 -->
+<section class="project-features" style="background:var(--surface);">
+    <div class="container">
+        <div class="section-header" style="text-align:center;">
+            <div>
+                <h2>Ubicación y <span class="highlight">Vista 360°</span></h2>
+                <p>Conoce la ubicación exacta y explora el proyecto desde tu pantalla.</p>
+            </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr; gap:2rem;">
+            <!-- Mapa -->
+            <div style="border-radius:1.5rem; overflow:hidden; box-shadow:var(--shadow-popular);">
+                <div style="padding:1rem; background:#fff; border-bottom:1px solid #f5f5f4; text-align:center;">
+                    <h4 style="margin:0; font-weight:800; display:flex; align-items:center; justify-content:center; gap:0.5rem; font-size:1rem;">
+                        <span class="material-symbols-outlined" style="color:var(--primary);">pin_drop</span> Ubicación — Reque
+                    </h4>
+                </div>
+                <iframe src="https://maps.google.com/maps?q=-6.8882528,-79.8266736&z=14&output=embed" width="100%" height="350" frameborder="0" style="border:0; display:block;" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Vista 360 -->
+            <div style="border-radius:1.5rem; overflow:hidden; box-shadow:var(--shadow-popular);">
+                <div style="padding:1rem; background:#fff; border-bottom:1px solid #f5f5f4; text-align:center;">
+                    <h4 style="margin:0; font-weight:800; display:flex; align-items:center; justify-content:center; gap:0.5rem; font-size:1rem;">
+                        <span class="material-symbols-outlined" style="color:var(--primary);">360</span> Vista 360° del Proyecto
+                    </h4>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!4v1679000000000!6m8!1m7!1s_placeholder_streetview!2m2!1d-6.8882528!2d-79.8266736!3f0!4f0!5f0.7820865974627469" width="100%" height="350" frameborder="0" style="border:0; display:block;" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><a href="index.html"><img alt="URBEQ" src="LOGO_URBEQ.webp"/></a></div>
+                <p>Creando comunidades sostenibles y seguras en el norte peruano.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="cotizacion.html">Cotización</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 URBEQ. Desarrollando el corazón del hogar peruano. 🇵🇪</p></div>
+    </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/51987654321?text=Hola%20URBEQ,%20quiero%20información%20sobre%20Reque%20Mar" target="_blank" class="floating-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script src="script.js"></script>
+<script>
+function changeImage(src, thumb) {
+    document.getElementById('mainImage').src = src;
+    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+}
+</script>
+</body>
+</html>

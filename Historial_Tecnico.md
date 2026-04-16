@@ -1,0 +1,67 @@
+## Estado Actual
+- Se restauró la estructura completa de tarjetas destacadas en `index.html`: leyendas de estado, datos de ubicación/precio y botón de acción por tarjeta.
+- Se retiró nuevamente el botón "VER LOTES" del encabezado de la sección destacada (a pedido del usuario).
+- La imagen de cada tarjeta quedó clickeable hacia su proyecto mediante `data-href` + JavaScript, manteniendo el botón "VER PROYECTO".
+- Se agregó un botón de tema flotante (debug) junto al botón de WhatsApp para alternar entre modo oscuro y modo claro.
+- El tema predeterminado al cargar ahora es oscuro (negro), sin persistencia entre recargas.
+- Se actualizó el contenido de `index.html` con lenguaje más coloquial del norte y textos más cortos.
+- Se alineó la identidad visual a la marca: colores corporativos y tipografías Poppins/Lato.
+- Testimonios ahora se posiciona debajo del hero en la carga de página.
+- Se eliminó el mapa de la sección de contacto en `index.html`.
+- Se corrigió el comportamiento del tema en la sección de contacto (ahora responde al cambio claro/oscuro).
+- Se redujo el ancho visual de cabecera y hero para un layout más compacto.
+- Se reforzó el modo oscuro/claro para el resto de la página (testimonios, footer y navegación móvil).
+- Se reactivó la lógica del botón flotante de tema para que vuelva a alternar toda la página.
+- Se corrigió la cabecera para que tome color según tema activo (claro/oscuro).
+- Se dejó explícitamente el tema oscuro como predeterminado en la carga.
+- Se añadió animación tipo notificación al botón de WhatsApp (badge circular con número 1).
+- Se eliminó el overlay blanco del fondo de contacto y se dejó solo transparencia negra en ambos temas.
+- Se reestructuró la paleta para evitar blanco/negro puros y usar tonos más suaves en ambos temas.
+- Se reforzó presencia del turquesa corporativo en etiquetas y overlays.
+- Se rediseñó la navegación móvil a formato iconos tipo app web.
+- Se cambió el logo de cabecera al archivo `img/ISOTIPO NARANJA.png`.
+- Se movieron los iconos móviles a la cabecera (arriba), quitando formato de barra inferior.
+- Se dejó el isotipo en móvil y los logos alternos solo para escritorio.
+- Se aplicó lógica global para que el cambio alcance todas las páginas sin editar cada HTML manualmente.
+- Se corrigió el parpadeo inicial en móvil (texto/logo antiguos) antes de cargar la versión final.
+- Se rediseñó el tema claro con base naranja y mezcla de grises/turquesas para evaluación estética.
+- Se reforzó el naranja (#F26A1B) como tono dominante también en el tema oscuro.
+
+## Tareas Completadas
+- Se eliminó el botón "VER LOTES" junto al título "Tu lote al toque en el norte", manteniendo intactas las tarjetas.
+- Se devolvió la UI completa del apartado de proyectos destacados (leyendas, datos y botón por tarjeta), según referencia visual del usuario.
+- Se implementó `initProjectImageLinks` en `script.js` para navegación por clic/teclado sobre imágenes con `data-href`.
+- Se ajustó el CTA de tarjeta a "VER PROYECTO" y se mantuvo el acceso tanto por imagen como por botón.
+- Se renombró el CTA de tarjetas destacadas de "Ver lote" a "Ver proyecto" y se corrigió estructura HTML afectada en contacto/footer.
+- Resumen previo: implementación del botón de tema flotante (debug), con modo oscuro por defecto e integración visual con navegación.
+- Reescritura completa del copy principal en `index.html` con tono cercano para público de Chiclayo y Lambayeque.
+- Acorte de textos en secciones clave: hero, proyectos, nosotros, testimonios, educación, contacto y footer.
+- Aplicación de paleta corporativa en `styles.css`:
+	- Principal: #F26A1B y #6E6E6E
+	- Secundaria: #CFEDEE, #FFFFFF y #000000
+- Migración tipográfica en `styles.css` a Poppins (principal) y Lato (secundaria) con import global.
+- Corrección de bloques de estilo dinámico en `script.js` para mantener coherencia visual de navegación y filtros.
+- Implementación de `placeTestimonialsAfterHero` en `script.js` para mover testimonios debajo del hero.
+- Eliminación del bloque `contact-map` en `index.html`.
+- Refactor de variables de tema para contacto (`--contact-overlay-*`, `--contact-wrapper-bg`, `--contact-field-bg`) en `styles.css`.
+- Ajuste de ancho y escala visual en cabecera/hero (`max-width` y `min-height`) en `styles.css`.
+- Normalización de colores hardcodeados a variables de tema en testimonios y footer para que el toggle aplique de forma global.
+- Restauración funcional de `initThemeToggle` en `script.js` (modo oscuro por defecto + alternancia claro/oscuro).
+- Ajuste de `initStickyNav` para leer `--nav-surface`, `--nav-shadow-rest` y `--nav-shadow-scrolled` según el tema.
+- Ajuste de `initThemeToggle` para iniciar siempre con `applyTheme('dark')`.
+- Implementación de `::after` y `@keyframes whatsapp-notification-pulse` en `styles.css` para el indicador animado.
+- Ajuste de `--contact-overlay-start` y `--contact-overlay-end` en tema claro para usar el mismo overlay negro del tema oscuro.
+- Limpieza de bloques de variables de tema duplicados/superpuestos en `styles.css` para mantener coherencia visual.
+- Implementación de estructura `nav-icon`/`nav-label` en `index.html` y estilos móviles dedicados en `styles.css`.
+- Ajustes de layout móvil en cabecera para logo lateral + navegación por iconos en la parte superior.
+- Implementación de `initGlobalNavAndLogos` en `script.js` para normalizar iconos móviles y variantes de logo (header/footer) en todo el sitio.
+- Añadida clase `mobile-nav-ready` + reglas CSS para ocultar estado intermedio y evitar flash en transición entre páginas.
+- Ajuste de variables `:root[data-theme='light']` para eliminar extremos y dar un look más equilibrado.
+- Se adelgazó la cabecera reduciendo el padding de `.nav-container` (1rem -> 0.6rem) y altura de logo (4rem -> 2.8rem).
+- Se eliminaron los márgenes superiores manuales (`margin-top`) en botones de la cabecera para asegurar un centrado vertical perfecto mediante flexbox.
+- Se ajustó el posicionamiento del `.search-container` en el hero de `index.html` de centro absoluto a centro inferior (`align-items: flex-end`).
+- Se corrigió error de sintaxis CSS (`flex-direction: flex-end`) en `.project-detail-hero`.
+- Se limpiaron propiedades redundantes en `.hero-content` que bloqueaban el alineamiento vertical.
+
+## Tareas Pendientes
+- Revisión visual final del contraste en modo claro en todas las páginas del sitio.
