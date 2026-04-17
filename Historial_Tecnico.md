@@ -1,4 +1,17 @@
 ## Estado Actual
+- Se eliminó la franja superior (`.top-bar`) en todo el sitio para dejar solo la cabecera principal.
+- Versión final del separador norteño: solo anaranjado (#F26A1B), con forma de ola en loop.
+- Footer actualizado a gris más oscuro (#4A4A4A) y logo `LOGO BLANCO NARANJA.png` para mejor contraste.
+- Se eliminó el bloque visual del lema "URBEQ / Somos tu guía segura" del apartado de proyectos destacados en `index.html`.
+- Fondo de Inicio ajustado por secciones: testimonios en blanco, proyectos destacados en gris claro liso, nosotros en blanco y educación en gris claro liso.
+- Se corrigió el modo oscuro de Inicio con overrides dedicados para proyectos, nosotros, testimonios y educación, manteniendo intacto el modo claro.
+- Se mejoró `img/patron_norteno.svg` inspirado en la referencia visual del usuario (olas arriba/abajo + bloque central escalonado), usando únicamente #F26A1B, #6E6E6E y #CFEDEE.
+- Se simplificó el separador norteño para que se vea menos cargado: patrón de una sola banda y menor altura visual.
+- El orden de testimonios en Inicio quedó fijo directamente en `index.html`, ubicado debajo del hero para no depender del reordenamiento dinámico.
+- Restaurada paleta de colores original: Naranja (`#F26A1B`), Gris (`#6E6E6E`) y Turquesa (`#CFEDEE`).
+- Implementación de eslogan URBEQ "Somos tu guía segura" en cabecera (top-bar) y pie de página de todo el sitio.
+- Rediseño de patrón norteño con el Tumi usando los colores corporativos restaurados.
+- Implementación de divisores visuales norteños entre secciones del `index.html`.
 - Se refinó el tono del copy: combinando cercanía popular ("pal' gran paso", "al toque") con atributos de calidad y confianza ("garantía URBEQ", "100% legal").
 - Se actualizaron todos los textos comerciales para incluir "Lotes y Casas" en lugar de referirse únicamente a uno de ellos.
 - Se ajustaron metadatos de SEO, títulos de página y mensajes de WhatsApp para reflejar la oferta dual.
@@ -34,6 +47,24 @@
 - Se reforzó el naranja (#F26A1B) como tono dominante también en el tema oscuro.
 
 ## Tareas Completadas
+- Se retiró por completo la franja `.top-bar` en las 11 páginas HTML para dejar solo la cabecera principal.
+- Se retiró `initBrandMottoSpotlight` de `script.js` para eliminar por completo el lema flotante.
+- Se movió el bloque estático `.index-motto-banner` en `index.html` hacia la sección de proyectos destacados (fuera de la cabecera).
+- Se limpió `styles.css` eliminando reglas de `.top-bar` y de `brand-motto-*`, y se añadieron estilos `index-motto-*`.
+- Se rediseñó `img/patron_norteno.svg` con composición inspirada en la referencia: olas superior/inferior, separadores lineales y bloque geométrico central escalonado.
+- Se refinó `img/patron_norteno.svg` a una versión más ligera (una banda principal) y se ajustó `.norteno-divider` en `styles.css` de 40px a 30px para reducir saturación visual.
+- Se aplicó ajuste final del separador en `img/patron_norteno.svg`: una sola ola en loop, únicamente color naranja.
+- Se movió el bloque `<section class="testimonials">` (y su divisor) en `index.html` para dejarlo inmediatamente después de `</header>`.
+- Se limpió `script.js` retirando la función de reordenamiento de testimonios y su llamada en `DOMContentLoaded`, al quedar el orden fijo en HTML.
+- Se limpiaron estilos `index-motto-*` en `styles.css` al eliminar el bloque visual del lema en Inicio.
+- Se añadió clase `home-page` en `index.html` y reglas específicas en `styles.css` para aplicar los nuevos fondos por sección sin afectar páginas internas.
+- Se ajustó el footer en `styles.css` a fondo gris corporativo y colores de texto/enlaces para legibilidad.
+- Se reemplazó el logo del footer por `img/LOGO BLANCO NARANJA.png` en todos los HTML y en la normalización global de logos en `script.js`.
+- Se añadieron reglas `:root[data-theme='dark'] .home-page ...` en `styles.css` para resolver contraste roto en modo oscuro sin tocar la versión clara.
+- Se restauraron los colores originales en `styles.css` y se añadieron degradados a los botones primarios.
+- Se creó una clase `.top-bar` con el eslogan "Somos tu guía segura" aplicada a todos los archivos HTML.
+- Se rediseñó `img/patron_norteno.svg` para incluir el Tumi con los colores Naranja y Turquesa corporativos.
+- Se creó `img/patron_norteno.svg` con diseño geométrico de inspiración norteña (escalón y ola).
 - Se mejoró el encabezado de contacto y CTA: "¿Listo pal' gran paso? Tu lote o casa con garantía URBEQ".
 - Se ajustó el título de proyectos destacados: "Tu lote o casa propia, al toque y 100% legal".
 - Se reemplazaron términos como "lote" o "casa" por expresiones inclusivas ("Lotes y Casas", "Lote o Casa") en todos los HTML y script.js.

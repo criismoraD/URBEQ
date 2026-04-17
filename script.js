@@ -56,6 +56,11 @@ function initGlobalNavAndLogos() {
         const anchor = document.querySelector(anchorSelector);
         if (!anchor) return;
 
+        const isFooterLogo = classPrefix === 'footer-logo';
+        const logoDefaultSrc = isFooterLogo ? 'img/LOGO BLANCO NARANJA.png' : 'img/PNG NARANJA Y GRIS.png';
+        const logoDarkSrc = 'img/LOGO BLANCO NARANJA.png';
+        const logoMobileSrc = isFooterLogo ? 'img/LOGO BLANCO NARANJA.png' : 'img/ISOTIPO NARANJA.png';
+
         let logoDefault = anchor.querySelector(`.${classPrefix}-default`);
         let logoDark = anchor.querySelector(`.${classPrefix}-dark`);
         let logoMobile = anchor.querySelector(`.${classPrefix}-mobile`);
@@ -66,27 +71,28 @@ function initGlobalNavAndLogos() {
             logoDefault = document.createElement('img');
             logoDefault.className = `${classPrefix}-default`;
             logoDefault.alt = 'URBEQ';
-            logoDefault.src = 'img/PNG NARANJA Y GRIS.png';
+            logoDefault.src = logoDefaultSrc;
             logoDefault.style.display = 'block';
 
             logoDark = document.createElement('img');
             logoDark.className = `${classPrefix}-dark`;
             logoDark.alt = 'URBEQ';
-            logoDark.src = 'img/LOGO BLANCO NARANJA.png';
+            logoDark.src = logoDarkSrc;
             logoDark.style.display = 'none';
 
             logoMobile = document.createElement('img');
             logoMobile.className = `${classPrefix}-mobile`;
             logoMobile.alt = 'URBEQ';
-            logoMobile.src = 'img/ISOTIPO NARANJA.png';
+            logoMobile.src = logoMobileSrc;
             logoMobile.style.display = 'none';
 
             anchor.appendChild(logoDefault);
             anchor.appendChild(logoDark);
             anchor.appendChild(logoMobile);
         } else {
-            // Force isotipo on mobile variant in all pages.
-            logoMobile.src = 'img/ISOTIPO NARANJA.png';
+            logoDefault.src = logoDefaultSrc;
+            logoDark.src = logoDarkSrc;
+            logoMobile.src = logoMobileSrc;
         }
     }
 
@@ -213,19 +219,6 @@ function initSmoothScroll() {
             }
         });
     });
-}
-
-// ============================================
-// 4. Place Testimonials After Hero
-// ============================================
-function placeTestimonialsAfterHero() {
-    const hero = document.querySelector('.hero');
-    const testimonials = document.querySelector('.testimonials');
-
-    if (!hero || !testimonials) return;
-    if (hero.nextElementSibling === testimonials) return;
-
-    hero.insertAdjacentElement('afterend', testimonials);
 }
 
 // ============================================
@@ -802,24 +795,30 @@ function initProjectGallery() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🏘️ URBEQ - Initializing...');
 
-    // Prioridad: Carrusel Hero (Debug activado)
-    initHeroCarousel();
+    const safeInit = (initializer, label) => {
+        try {
+            initializer();
+        } catch (error) {
+            console.error(`❌ URBEQ - ${label} failed`, error);
+        }
+    };
 
-    initMobileMenu();
-    initGlobalNavAndLogos();
-    initThemeToggle();
-    initSmoothScroll();
-    placeTestimonialsAfterHero();
-    initTestimonialsCarousel();
-    initFormValidation();
-    initScrollAnimations();
-    initProjectFilters();
-    initFloatingButton();
-    initSearchBar();
-    initProjectImageLinks();
-    initProjectImageHover();
-    initStickyNav();
-    initProjectGallery();
+    // Prioridad: Carrusel Hero (Debug activado)
+    safeInit(initHeroCarousel, 'initHeroCarousel');
+    safeInit(initMobileMenu, 'initMobileMenu');
+    safeInit(initGlobalNavAndLogos, 'initGlobalNavAndLogos');
+    safeInit(initThemeToggle, 'initThemeToggle');
+    safeInit(initSmoothScroll, 'initSmoothScroll');
+    safeInit(initTestimonialsCarousel, 'initTestimonialsCarousel');
+    safeInit(initFormValidation, 'initFormValidation');
+    safeInit(initScrollAnimations, 'initScrollAnimations');
+    safeInit(initProjectFilters, 'initProjectFilters');
+    safeInit(initFloatingButton, 'initFloatingButton');
+    safeInit(initSearchBar, 'initSearchBar');
+    safeInit(initProjectImageLinks, 'initProjectImageLinks');
+    safeInit(initProjectImageHover, 'initProjectImageHover');
+    safeInit(initStickyNav, 'initStickyNav');
+    safeInit(initProjectGallery, 'initProjectGallery');
 
     console.log('✅ URBEQ - All features loaded!');
 });
