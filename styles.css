@@ -65,12 +65,6 @@
     --outline: #767672;
     --outline-variant: #4a4a46;
 
-    /* Error Colors */
-    --error: #c13a3a;
-    --error-container: #f7d8d5;
-    --on-error: #fff7f5;
-    --on-error-container: #7e1d1d;
-
     /* Typography */
     --font-family: 'Poppins', sans-serif;
     --font-family-secondary: 'Lato', sans-serif;
