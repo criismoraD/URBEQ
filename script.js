@@ -754,20 +754,20 @@ function initProjectGallery() {
 
     let currentIndex = 0;
     let intervalId;
+    const thumbsArray = Array.from(galleryThumbs);
     
     // Configurar tiempo de transición (en milisegundos)
     const slideDuration = 3500;
 
     function nextSlide() {
         // Encontrar índice actual
-        const thumbsArray = Array.from(galleryThumbs);
         currentIndex = thumbsArray.findIndex(t => t.classList.contains('active'));
         
         // Siguiente índice (volver a 0 si es el último)
-        currentIndex = (currentIndex + 1) % galleryThumbs.length;
+        currentIndex = (currentIndex + 1) % thumbsArray.length;
         
         // Simular clic en el thumbnail para cambiar imagen usando la función existente
-        galleryThumbs[currentIndex].click();
+        thumbsArray[currentIndex].click();
     }
 
     function startAutoPlay() {
