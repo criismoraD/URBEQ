@@ -760,8 +760,11 @@ function initProjectGallery() {
     const slideDuration = 3500;
 
     function nextSlide() {
-        // Encontrar índice actual
-        currentIndex = thumbsArray.findIndex(t => t.classList.contains('active'));
+        // Encontrar índice actual usando el estado para evitar findIndex O(N) en cada tick
+        if (currentIndex < 0 || currentIndex >= thumbsArray.length || !thumbsArray[currentIndex].classList.contains('active')) {
+            currentIndex = thumbsArray.findIndex(t => t.classList.contains('active'));
+            if (currentIndex === -1) currentIndex = 0;
+        }
         
         // Siguiente índice (volver a 0 si es el último)
         currentIndex = (currentIndex + 1) % thumbsArray.length;
