@@ -566,6 +566,7 @@ function initFloatingButton() {
 function initSearchBar() {
     const searchBtn = document.querySelector('.btn-search');
     const searchQueryInput = document.getElementById('searchQuery');
+    const projectsSection = document.querySelector('.featured-projects');
 
     if (searchBtn) {
         searchBtn.addEventListener('click', () => {
@@ -575,7 +576,6 @@ function initSearchBar() {
                 : 'Sin término específico';
 
             // Scroll to projects section
-            const projectsSection = document.querySelector('.featured-projects');
             if (projectsSection) {
                 projectsSection.scrollIntoView({ behavior: 'smooth' });
             }
