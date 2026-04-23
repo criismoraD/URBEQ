@@ -222,15 +222,6 @@ function initSmoothScroll() {
 }
 
 // ============================================
-// 5. Testimonials Carousel (CSS-only marquee)
-// ============================================
-// The testimonials carousel is now handled purely via CSS animation
-// (@keyframes marquee-scroll). No JavaScript is needed.
-function initTestimonialsCarousel() {
-    // CSS-only — nothing to do here
-}
-
-// ============================================
 // 5. Form Validation
 // ============================================
 function initFormValidation() {
@@ -812,7 +803,6 @@ document.addEventListener('DOMContentLoaded', () => {
     safeInit(initGlobalNavAndLogos, 'initGlobalNavAndLogos');
     safeInit(initThemeToggle, 'initThemeToggle');
     safeInit(initSmoothScroll, 'initSmoothScroll');
-    safeInit(initTestimonialsCarousel, 'initTestimonialsCarousel');
     safeInit(initFormValidation, 'initFormValidation');
     safeInit(initScrollAnimations, 'initScrollAnimations');
     safeInit(initProjectFilters, 'initProjectFilters');
