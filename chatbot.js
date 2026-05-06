@@ -89,7 +89,7 @@
             '<div class="chatbot-window" id="chatbot-window">' +
                 '<div class="chatbot-header">' +
                     '<div class="chatbot-avatar">' +
-                        '<img src="img%20bot/01-explicando.png" alt="' + CONFIG.nombre + '" id="chatbot-avatar-img">' +
+                        '<img src="img%20bot/FOTO%20DE%20PERFIL.png" alt="' + CONFIG.nombre + '" id="chatbot-avatar-img">' +
                     '</div>' +
                     '<div class="chatbot-info">' +
                         '<h4>' + CONFIG.nombre + '</h4>' +
