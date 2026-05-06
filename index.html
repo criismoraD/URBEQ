@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link href="styles.css?v=1.2" rel="stylesheet" />
+    <link href="chatbot.css?v=1.0" rel="stylesheet" />
 </head>
 
 
@@ -59,16 +60,24 @@
     <header class="hero">
         <div class="hero-background">
             <div class="hero-carousel">
-                <div class="hero-slide active" data-duration="5000">
+                <!-- Desktop slides -->
+                <div class="hero-slide hero-desktop active" data-duration="5000">
                     <img src="heo1.jpeg" alt="URBEQ - Tu lote o casa en el norte">
                 </div>
-                <div class="hero-slide" data-duration="5000">
+                <div class="hero-slide hero-desktop" data-duration="5000">
                     <img src="hero2.jpeg" alt="URBEQ - Cumple tus sueños">
                 </div>
-                <div class="hero-slide" data-duration="10000">
+                <div class="hero-slide hero-desktop" data-duration="10000">
                     <video autoplay muted playsinline id="hero-vid">
                         <source src="hero.webm" type="video/webm">
                     </video>
+                </div>
+                <!-- Mobile vertical banners -->
+                <div class="hero-slide hero-mobile active" data-duration="7000">
+                    <img src="img/BANERS%20PARA%20SITIO%20WEB%20VERTICAL.jpg.jpeg" alt="URBEQ - Tu lote o casa en el norte - Móvil 1">
+                </div>
+                <div class="hero-slide hero-mobile" data-duration="7000">
+                    <img src="img/BANERS%20PARA%20SITIO%20WEB%20VERTICAL%202.jpg.jpeg" alt="URBEQ - Tu lote o casa en el norte - Móvil 2">
                 </div>
                 <!-- Manual Controls -->
                 <button class="hero-ctrl hero-prev" aria-label="Anterior">
@@ -209,6 +218,27 @@
                     </div>
                 </div>
 
+                <!-- Video Testimonial -->
+                <div class="testimonial-card video-testimonial animate-on-scroll animate-scale-up">
+                    <div class="testimonial-content">
+                        <div class="testimonial-video-wrapper">
+                            <video class="testimonial-video" muted playsinline loop poster="Stock/testimonios (1).jpeg">
+                                <source src="videos/WhatsApp%20Video%202026-04-22%20at%204.47.42%20PM.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-play-overlay">
+                                <span class="play-icon">▶</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "Ver para creer. Así fue nuestra experiencia con URBEQ."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p class="author-name">Testimonio en Video</p>
+                        <p class="author-location">📍 Cliente Satisfecho</p>
+                    </div>
+                </div>
+
                 <!-- SET 2: Duplicate for seamless loop -->
                 <div class="testimonial-card animate-on-scroll animate-scale-up">
                     <div class="testimonial-content">
@@ -298,6 +328,27 @@
                     <div class="testimonial-author">
                         <p class="author-name">Diana Paredes</p>
                         <p class="author-location">📍 Pimentel</p>
+                    </div>
+                </div>
+
+                <!-- Video Testimonial (Duplicate for seamless loop) -->
+                <div class="testimonial-card video-testimonial animate-on-scroll animate-scale-up">
+                    <div class="testimonial-content">
+                        <div class="testimonial-video-wrapper">
+                            <video class="testimonial-video" muted playsinline loop poster="Stock/testimonios (1).jpeg">
+                                <source src="videos/WhatsApp%20Video%202026-04-22%20at%204.47.42%20PM.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-play-overlay">
+                                <span class="play-icon">▶</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "Ver para creer. Así fue nuestra experiencia con URBEQ."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p class="author-name">Testimonio en Video</p>
+                        <p class="author-location">📍 Cliente Satisfecho</p>
                     </div>
                 </div>
             </div>
@@ -616,6 +667,7 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="chatbot.js?v=1.0"></script>
 </body>
 
 </html>

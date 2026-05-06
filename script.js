@@ -125,7 +125,7 @@ function initThemeToggle() {
     const root = document.documentElement;
     const icon = themeBtn.querySelector('.material-symbols-outlined');
 
-    function applyTheme(theme) {
+    function applyTheme(theme, save = true) {
         root.setAttribute('data-theme', theme);
         themeBtn.setAttribute('aria-pressed', String(theme === 'light'));
 
@@ -135,6 +135,11 @@ function initThemeToggle() {
 
         // Update logo based on theme and device
         updateLogo(theme);
+
+        // Save to localStorage
+        if (save) {
+            localStorage.setItem('urbeq-theme', theme);
+        }
 
         // Dispatch theme change event
         window.dispatchEvent(new Event('themechange'));
@@ -182,8 +187,21 @@ function initThemeToggle() {
         }
     }
 
-    // Default theme: light on load
-    applyTheme('light');
+    // Load saved theme or use system preference
+    function getInitialTheme() {
+        const savedTheme = localStorage.getItem('urbeq-theme');
+        if (savedTheme) {
+            return savedTheme;
+        }
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
+    }
+
+    // Apply initial theme without saving (already saved or using default)
+    applyTheme(getInitialTheme(), false);
 
     themeBtn.addEventListener('click', () => {
         const currentTheme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
@@ -784,6 +802,53 @@ function initProjectGallery() {
 }
 
 // ============================================
+// Video Testimonials - Autoplay on visibility
+// ============================================
+function initVideoTestimonials() {
+    const videoCards = document.querySelectorAll('.video-testimonial');
+    if (!videoCards.length) return;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target.querySelector('.testimonial-video');
+            const card = entry.target;
+
+            if (entry.isIntersecting) {
+                video.play().catch(e => console.warn('Video testimonial: Play bloqueado', e));
+                card.classList.add('playing');
+            } else {
+                video.pause();
+                card.classList.remove('playing');
+            }
+        });
+    }, observerOptions);
+
+    videoCards.forEach(card => {
+        const video = card.querySelector('.testimonial-video');
+        if (video) {
+            videoObserver.observe(card);
+
+            // Allow manual toggle on click
+            card.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play().catch(e => console.warn('Video testimonial: Play bloqueado', e));
+                    card.classList.add('playing');
+                } else {
+                    video.pause();
+                    card.classList.remove('playing');
+                }
+            });
+        }
+    });
+}
+
+// ============================================
 // Initialize All Features
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -812,6 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
     safeInit(initProjectImageHover, 'initProjectImageHover');
     safeInit(initStickyNav, 'initStickyNav');
     safeInit(initProjectGallery, 'initProjectGallery');
+    safeInit(initVideoTestimonials, 'initVideoTestimonials');
 
     console.log('✅ URBEQ - All features loaded!');
 });
@@ -820,10 +886,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // 11. Hero Carousel (Video + Images) - MANUAL & AUTO
 // ============================================
 function initHeroCarousel() {
-    const slides = document.querySelectorAll('.hero-slide');
     const btnPrev = document.querySelector('.hero-prev');
     const btnNext = document.querySelector('.hero-next');
-    
+
+    // Obtener solo slides visibles según viewport
+    function getVisibleSlides() {
+        const isMobile = window.innerWidth <= 767;
+        const selector = isMobile ? '.hero-slide.hero-mobile' : '.hero-slide.hero-desktop';
+        return document.querySelectorAll(selector);
+    }
+
+    let slides = getVisibleSlides();
     if (slides.length === 0) return;
 
     let currentIndex = 0;
@@ -833,26 +906,34 @@ function initHeroCarousel() {
         // Limpiar timeout pendiente para evitar cambios dobles
         if (timeoutId) clearTimeout(timeoutId);
 
+        // Actualizar lista de slides visibles (por si cambió el viewport)
+        slides = getVisibleSlides();
+        if (slides.length === 0) return;
+
         console.log('Hero: Cambiando de', currentIndex, 'a', index);
 
         // Pausar video actual si existe
-        const currentVideo = slides[currentIndex].querySelector('video');
+        const currentVideo = slides[currentIndex]?.querySelector('video');
         if (currentVideo) currentVideo.pause();
 
         // Cambiar clases
-        slides[currentIndex].classList.remove('active');
+        if (slides[currentIndex]) {
+            slides[currentIndex].classList.remove('active');
+        }
         currentIndex = index;
-        slides[currentIndex].classList.add('active');
+        if (slides[currentIndex]) {
+            slides[currentIndex].classList.add('active');
+        }
 
         // Reiniciar video si el nuevo slide tiene uno
-        const nextVideo = slides[currentIndex].querySelector('video');
+        const nextVideo = slides[currentIndex]?.querySelector('video');
         if (nextVideo) {
             nextVideo.currentTime = 0;
             nextVideo.play().catch(e => console.warn('Hero: Play bloqueado', e));
         }
 
         // Programar siguiente cambio automático
-        const duration = parseInt(slides[currentIndex].getAttribute('data-duration') || 5000);
+        const duration = parseInt(slides[currentIndex]?.getAttribute('data-duration') || 5000);
         timeoutId = setTimeout(() => {
             const nextIdx = (currentIndex + 1) % slides.length;
             showSlide(nextIdx);
@@ -862,6 +943,7 @@ function initHeroCarousel() {
     // Eventos Manuales
     if (btnPrev) {
         btnPrev.addEventListener('click', () => {
+            slides = getVisibleSlides();
             const nextIdx = (currentIndex - 1 + slides.length) % slides.length;
             showSlide(nextIdx);
         });
@@ -869,6 +951,7 @@ function initHeroCarousel() {
 
     if (btnNext) {
         btnNext.addEventListener('click', () => {
+            slides = getVisibleSlides();
             const nextIdx = (currentIndex + 1) % slides.length;
             showSlide(nextIdx);
         });
@@ -878,13 +961,29 @@ function initHeroCarousel() {
     slides.forEach((slide) => {
         slide.style.cursor = 'pointer';
         slide.addEventListener('click', () => {
+            slides = getVisibleSlides();
             const nextIdx = (currentIndex + 1) % slides.length;
             showSlide(nextIdx);
         });
     });
 
+    // Manejar cambio de tamaño de ventana
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            slides = getVisibleSlides();
+            currentIndex = 0;
+            // Reset: activar solo el primer slide visible
+            slides.forEach((s, i) => s.classList.toggle('active', i === 0));
+            if (timeoutId) clearTimeout(timeoutId);
+            const duration = parseInt(slides[0]?.getAttribute('data-duration') || 5000);
+            timeoutId = setTimeout(() => showSlide(1), duration);
+        }, 250);
+    });
+
     // Iniciar con el primer slide
-    const initialDuration = parseInt(slides[0].getAttribute('data-duration') || 5000);
+    const initialDuration = parseInt(slides[0]?.getAttribute('data-duration') || 5000);
     timeoutId = setTimeout(() => {
         showSlide(1);
     }, initialDuration);

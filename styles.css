@@ -546,6 +546,31 @@ input {
     object-position: bottom;
 }
 
+/* Desktop/Mobile specific slides */
+.hero-mobile {
+    display: none;
+}
+
+.hero-desktop {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .hero-mobile {
+        display: block;
+    }
+
+    .hero-desktop {
+        display: none;
+    }
+
+    /* Mobile banner should use contain to show full vertical banner */
+    .hero-mobile img {
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
 /* Hero Controls */
 .hero-ctrl {
     position: absolute;
@@ -1321,8 +1346,6 @@ input {
     }
 }
 
-}
-
 .testimonial-card {
     background-color: var(--surface-container-lowest);
     border-radius: 1rem;
@@ -1463,6 +1486,63 @@ input {
 :root[data-theme='dark'] .home-page .testimonials .testimonials-subtitle,
 :root[data-theme='dark'] .home-page .testimonials .author-location {
     color: #d2d2d2;
+}
+
+/* ============================================
+   VIDEO TESTIMONIAL STYLES
+   ============================================ */
+.video-testimonial .testimonial-content {
+    position: relative;
+}
+
+.testimonial-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.testimonial-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.video-testimonial:hover .testimonial-video {
+    transform: scale(1.05);
+}
+
+.video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.video-testimonial.playing .video-play-overlay {
+    opacity: 0;
+}
+
+.play-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(242, 106, 27, 0.4);
 }
 
 :root[data-theme='dark'] .home-page .education .section-label {
@@ -1953,7 +2033,7 @@ input {
     min-height: 260px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
 }
 
