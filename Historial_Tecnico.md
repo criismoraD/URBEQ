@@ -1,0 +1,112 @@
+## Estado Actual
+- Se eliminó la franja superior (`.top-bar`) en todo el sitio para dejar solo la cabecera principal.
+- Versión final del separador norteño: solo anaranjado (#F26A1B), con forma de ola en loop.
+- Footer actualizado a gris más oscuro (#4A4A4A) y logo `LOGO BLANCO NARANJA.png` para mejor contraste.
+- Se eliminó el bloque visual del lema "URBEQ / Somos tu guía segura" del apartado de proyectos destacados en `index.html`.
+- Fondo de Inicio ajustado por secciones: testimonios en blanco, proyectos destacados en gris claro liso, nosotros en blanco y educación en gris claro liso.
+- Se corrigió el modo oscuro de Inicio con overrides dedicados para proyectos, nosotros, testimonios y educación, manteniendo intacto el modo claro.
+- Se mejoró `img/patron_norteno.svg` inspirado en la referencia visual del usuario (olas arriba/abajo + bloque central escalonado), usando únicamente #F26A1B, #6E6E6E y #CFEDEE.
+- Se simplificó el separador norteño para que se vea menos cargado: patrón de una sola banda y menor altura visual.
+- El orden de testimonios en Inicio quedó fijo directamente en `index.html`, ubicado debajo del hero para no depender del reordenamiento dinámico.
+- Restaurada paleta de colores original: Naranja (`#F26A1B`), Gris (`#6E6E6E`) y Turquesa (`#CFEDEE`).
+- Implementación de eslogan URBEQ "Somos tu guía segura" en cabecera (top-bar) y pie de página de todo el sitio.
+- Rediseño de patrón norteño con el Tumi usando los colores corporativos restaurados.
+- Implementación de divisores visuales norteños entre secciones del `index.html`.
+- Se refinó el tono del copy: combinando cercanía popular ("pal' gran paso", "al toque") con atributos de calidad y confianza ("garantía URBEQ", "100% legal").
+- Se actualizaron todos los textos comerciales para incluir "Lotes y Casas" en lugar de referirse únicamente a uno de ellos.
+- Se ajustaron metadatos de SEO, títulos de página y mensajes de WhatsApp para reflejar la oferta dual.
+- Se restauró la estructura completa de tarjetas destacadas en `index.html`: leyendas de estado, datos de ubicación/precio y botón de acción por tarjeta.
+- Se retiró nuevamente el botón "VER LOTES" del encabezado de la sección destacada (a pedido del usuario).
+- La imagen de cada tarjeta quedó clickeable hacia su proyecto mediante `data-href` + JavaScript, manteniendo el botón "VER PROYECTO".
+- Se agregó un botón de tema flotante (debug) junto al botón de WhatsApp para alternar entre modo oscuro y modo claro.
+- El tema predeterminado al cargar ahora es oscuro (negro), sin persistencia entre recargas.
+- Se actualizó el contenido de `index.html` con lenguaje más coloquial del norte y textos más cortos.
+- Se alineó la identidad visual a la marca: colores corporativos y tipografías Poppins/Lato.
+- Testimonios ahora se posiciona debajo del hero en la carga de página.
+- Se eliminó el mapa de la sección de contacto en `index.html`.
+- Se corrigió el comportamiento del tema en la sección de contacto (ahora responde al cambio claro/oscuro).
+- Se redujo el ancho visual de cabecera y hero para un layout más compacto.
+- Se reforzó el modo oscuro/claro para el resto de la página (testimonios, footer y navegación móvil).
+- Se reactivó la lógica del botón flotante de tema para que vuelva a alternar toda la página.
+- Se corrigió la cabecera para que tome color según tema activo (claro/oscuro).
+- Se dejó explícitamente el tema oscuro como predeterminado en la carga.
+- Se añadió animación tipo notificación al botón de WhatsApp (badge circular con número 1).
+- Se eliminó el overlay blanco del fondo de contacto y se dejó solo transparencia negra en ambos temas.
+- Se reestructuró la paleta para evitar blanco/negro puros y usar tonos más suaves en ambos temas.
+- Se reforzó presencia del turquesa corporativo en etiquetas y overlays.
+- Se rediseñó la navegación móvil a formato iconos tipo app web.
+- Se cambió el logo de cabecera al archivo `img/ISOTIPO NARANJA.png`.
+- Se movieron los iconos móviles a la cabecera (arriba), quitando formato de barra inferior.
+- Se dejó el isotipo en móvil y los logos alternos solo para escritorio.
+- Se aplicó lógica global para que el cambio alcance todas las páginas sin editar cada HTML manualmente.
+- Se corrigió el parpadeo inicial en móvil (texto/logo antiguos) antes de cargar la versión final.
+- Se rediseñó el tema claro con base naranja y mezcla de grises/turquesas para evaluación estética.
+- Se habilitó clic en toda la tarjeta (`.project-card`) para navegar a la página del proyecto.
+- Se mejoraron los estilos de hover en tarjetas: elevación (-8px) y cambio de fondo sutil.
+- Se posicionó el buscador como un "parche" absoluto (`position: absolute; bottom: 0`) para unir visualmente el Hero y Testimonios.
+- Se reforzó el naranja (#F26A1B) como tono dominante también en el tema oscuro.
+
+## Tareas Completadas
+- Se retiró por completo la franja `.top-bar` en las 11 páginas HTML para dejar solo la cabecera principal.
+- Se retiró `initBrandMottoSpotlight` de `script.js` para eliminar por completo el lema flotante.
+- Se movió el bloque estático `.index-motto-banner` en `index.html` hacia la sección de proyectos destacados (fuera de la cabecera).
+- Se limpió `styles.css` eliminando reglas de `.top-bar` y de `brand-motto-*`, y se añadieron estilos `index-motto-*`.
+- Se rediseñó `img/patron_norteno.svg` con composición inspirada en la referencia: olas superior/inferior, separadores lineales y bloque geométrico central escalonado.
+- Se refinó `img/patron_norteno.svg` a una versión más ligera (una banda principal) y se ajustó `.norteno-divider` en `styles.css` de 40px a 30px para reducir saturación visual.
+- Se aplicó ajuste final del separador en `img/patron_norteno.svg`: una sola ola en loop, únicamente color naranja.
+- Se movió el bloque `<section class="testimonials">` (y su divisor) en `index.html` para dejarlo inmediatamente después de `</header>`.
+- Se limpió `script.js` retirando la función de reordenamiento de testimonios y su llamada en `DOMContentLoaded`, al quedar el orden fijo en HTML.
+- Se limpiaron estilos `index-motto-*` en `styles.css` al eliminar el bloque visual del lema en Inicio.
+- Se añadió clase `home-page` en `index.html` y reglas específicas en `styles.css` para aplicar los nuevos fondos por sección sin afectar páginas internas.
+- Se ajustó el footer en `styles.css` a fondo gris corporativo y colores de texto/enlaces para legibilidad.
+- Se reemplazó el logo del footer por `img/LOGO BLANCO NARANJA.png` en todos los HTML y en la normalización global de logos en `script.js`.
+- Se añadieron reglas `:root[data-theme='dark'] .home-page ...` en `styles.css` para resolver contraste roto en modo oscuro sin tocar la versión clara.
+- Se restauraron los colores originales en `styles.css` y se añadieron degradados a los botones primarios.
+- Se creó una clase `.top-bar` con el eslogan "Somos tu guía segura" aplicada a todos los archivos HTML.
+- Se rediseñó `img/patron_norteno.svg` para incluir el Tumi con los colores Naranja y Turquesa corporativos.
+- Se creó `img/patron_norteno.svg` con diseño geométrico de inspiración norteña (escalón y ola).
+- Se mejoró el encabezado de contacto y CTA: "¿Listo pal' gran paso? Tu lote o casa con garantía URBEQ".
+- Se ajustó el título de proyectos destacados: "Tu lote o casa propia, al toque y 100% legal".
+- Se reemplazaron términos como "lote" o "casa" por expresiones inclusivas ("Lotes y Casas", "Lote o Casa") en todos los HTML y script.js.
+- Se actualizaron los enlaces de WhatsApp con mensajes predeterminados que mencionan ambos productos.
+- Se ajustaron los metadatos (title, description) para SEO con la nueva terminología.
+- Se eliminó el botón "VER LOTES" junto al título "Tu lote al toque en el norte", manteniendo intactas las tarjetas.
+- Se devolvió la UI completa del apartado de proyectos destacados (leyendas, datos y botón por tarjeta), según referencia visual del usuario.
+- Se implementó `initProjectImageLinks` en `script.js` para navegación por clic/teclado sobre imágenes con `data-href`.
+- Se ajustó el CTA de tarjeta a "VER PROYECTO" y se mantuvo el acceso tanto por imagen como por botón.
+- Se renombró el CTA de tarjetas destacadas de "Ver lote" a "Ver proyecto" y se corrigió estructura HTML afectada en contacto/footer.
+- Resumen previo: implementación del botón de tema flotante (debug), con modo oscuro por defecto e integración visual con navegación.
+- Reescritura completa del copy principal en `index.html` con tono cercano para público de Chiclayo y Lambayeque.
+- Acorte de textos en secciones clave: hero, proyectos, nosotros, testimonios, educación, contacto y footer.
+- Aplicación de paleta corporativa en `styles.css`:
+	- Principal: #F26A1B y #6E6E6E
+	- Secundaria: #CFEDEE, #FFFFFF y #000000
+- Migración tipográfica en `styles.css` a Poppins (principal) y Lato (secundaria) con import global.
+- Corrección de bloques de estilo dinámico en `script.js` para mantener coherencia visual de navegación y filtros.
+- Implementación de `placeTestimonialsAfterHero` en `script.js` para mover testimonios debajo del hero.
+- Eliminación del bloque `contact-map` en `index.html`.
+- Refactor de variables de tema para contacto (`--contact-overlay-*`, `--contact-wrapper-bg`, `--contact-field-bg`) en `styles.css`.
+- Ajuste de ancho y escala visual en cabecera/hero (`max-width` y `min-height`) en `styles.css`.
+- Normalización de colores hardcodeados a variables de tema en testimonios y footer para que el toggle aplique de forma global.
+- Restauración funcional de `initThemeToggle` en `script.js` (modo oscuro por defecto + alternancia claro/oscuro).
+- Ajuste de `initStickyNav` para leer `--nav-surface`, `--nav-shadow-rest` y `--nav-shadow-scrolled` según el tema.
+- Ajuste de `initThemeToggle` para iniciar siempre con `applyTheme('dark')`.
+- Implementación de `::after` y `@keyframes whatsapp-notification-pulse` en `styles.css` para el indicador animado.
+- Ajuste de `--contact-overlay-start` y `--contact-overlay-end` en tema claro para usar el mismo overlay negro del tema oscuro.
+- Limpieza de bloques de variables de tema duplicados/superpuestos en `styles.css` para mantener coherencia visual.
+- Implementación de estructura `nav-icon`/`nav-label` en `index.html` y estilos móviles dedicados en `styles.css`.
+- Ajustes de layout móvil en cabecera para logo lateral + navegación por iconos en la parte superior.
+- Implementación de `initGlobalNavAndLogos` en `script.js` para normalizar iconos móviles y variantes de logo (header/footer) en todo el sitio.
+- Añadida clase `mobile-nav-ready` + reglas CSS para ocultar estado intermedio y evitar flash en transición entre páginas.
+- Ajuste de variables `:root[data-theme='light']` para eliminar extremos y dar un look más equilibrado.
+- Se inicializó el repositorio Git local y se creó el repositorio remoto en GitHub (`criismoraD/URBEQ`) usando GitHub CLI.
+- Se configuró el archivo `.gitignore` para omitir archivos temporales y del sistema.
+- Se realizó el primer commit y push exitoso de todo el proyecto a la rama `master`.
+- Se adelgazó la cabecera reduciendo el padding de `.nav-container` (1rem -> 0.6rem) y altura de logo (4rem -> 2.8rem).
+- Se eliminaron los márgenes superiores manuales (`margin-top`) en botones de la cabecera para asegurar un centrado vertical perfecto mediante flexbox.
+- Se ajustó el posicionamiento del `.search-container` en el hero de `index.html` de centro absoluto a centro inferior (`align-items: flex-end`).
+- Se corrigió error de sintaxis CSS (`flex-direction: flex-end`) en `.project-detail-hero`.
+- Se limpiaron propiedades redundantes en `.hero-content` que bloqueaban el alineamiento vertical.
+
+## Tareas Pendientes
+- Revisión visual final del contraste en modo claro en todas las páginas del sitio.
