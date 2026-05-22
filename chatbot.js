@@ -1,4 +1,4 @@
-/**
+﻿/**
  * URBEQ Chatbot - Asistente virtual para comprensión de proyectos y cotizaciones
  * Cambia de imagen según el contexto emocional de la conversación
  */
@@ -48,34 +48,59 @@
         }
     };
 
-    // Estado de la conversación
-    let estado = {
-        paso: 'inicio',
-        contexto: 'bienvenida',
-        contextoProyecto: null,  // Guarda el último proyecto consultado para mantener contexto
-        datosCotizacion: {
-            proyecto: null,
-            nombre: null,
-            telefono: null,
-            email: null,
-            presupuesto: null,
-            cuotaInicial: null
-        },
-        historial: []
+    const NAV_ROUTES = {
+        inicio: { url: 'index.html', label: 'Inicio' },
+        proyectos: { url: 'proyectos.html', label: 'Proyectos' },
+        'palma real': { url: 'proyecto-palma-real.html', label: 'Palma Real' },
+        requemar: { url: 'proyecto-requemar.html', label: 'Reque Mar' },
+        reque: { url: 'proyecto-requemar.html', label: 'Reque Mar' },
+        pimentel: { url: 'proyecto-palma-real.html', label: 'Palma Real' },
+        educacion: { url: 'educacion.html', label: 'Educación' },
+        cotizacion: { url: 'cotizacion.html', label: 'Cotización' },
+        cotiza: { url: 'cotizacion.html', label: 'Cotización' },
+        nosotros: { url: 'nosotros.html', label: 'Nosotros' }
     };
 
-    // Base de conocimiento para respuestas
+    function crearEstadoInicial() {
+        return {
+            paso: 'inicio',
+            contexto: 'bienvenida',
+            contextoProyecto: null,
+            ultimaIntencion: null,
+            datosCotizacion: {
+                proyecto: null,
+                nombre: null,
+                telefono: null,
+                email: null,
+                presupuesto: null,
+                cuotaInicial: null,
+                plazo: null,
+                precio: null
+            },
+            historial: [],
+            memoria: []
+        };
+    }
+
+    let estado = crearEstadoInicial();
+    let chatActivo = false;
+
     const KNOWLEDGE_BASE = {
-        saludos: ['hola', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'saludos', 'que tal', 'como estas'],
-        proyectos: ['proyecto', 'proyectos', 'lotes', 'casas', 'terrenos', 'palma real', 'requemar', 'reque', 'pimentel', 'playa', 'chiclayo', 'tienes', 'disponibles', 'hay', 'catalogo', 'opciones', 'ver', 'mostrar'],
-        cotizacion: ['cotizar', 'cotizacion', 'precio', 'cuota', 'mensual', 'financiamiento', 'pagar', 'inicial', 'cuotas'],
-        legales: ['legal', 'papeles', 'sunarp', 'titulo', 'escritura', 'minuta', 'tramites', 'documentos', 'inscrito'],
-        servicios: ['agua', 'luz', 'desague', 'servicios', 'luz electrica', 'electricidad'],
-        ubicacion: ['ubicacion', 'donde esta', 'como llegar', 'direccion', 'mapa', 'ubicado'],
-        contacto: ['contacto', 'telefono', 'whatsapp', 'llamar', 'escribir', 'correo', 'email', 'comunicar'],
-        despedidas: ['adios', 'chau', 'hasta luego', 'nos vemos', 'bye', 'hasta pronto'],
-        agradecimientos: ['gracias', 'muy amable', 'te agradezco', 'mil gracias', 'muchas gracias', 'excelente', 'muy bien', 'buen trabajo', 'bien hecho', 'perfecto', 'me ayudaste mucho', 'eres lo maximo', 'me encantas'],
-        ayuda: ['ayuda', 'help', 'soporte', 'asistencia', 'que puedes hacer', 'funciones', 'capacidades']
+        saludos: ['hola', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'saludos', 'que tal', 'como estas', 'buen dia', 'que hubo', 'holis'],
+        proyectos: ['proyecto', 'proyectos', 'lotes', 'casas', 'terrenos', 'palma real', 'requemar', 'reque mar', 'reque', 'pimentel', 'playa', 'mar', 'chiclayo', 'lambayeque', 'monsefu', 'disponibles', 'disponible', 'catalogo', 'opciones', 'inventario', 'venden', 'ofrecen', 'tienen', 'hay', 'cuales son', 'que tienen', 'ver proyecto', 'mostrar proyecto', 'urbanizacion', 'urbanización'],
+        cotizacion: ['cotizar', 'cotizacion', 'cotiza', 'precio', 'precios', 'cuota', 'cuotas', 'mensual', 'mensualidad', 'financiamiento', 'financiar', 'pagar', 'inicial', 'enganche', 'cuanto sale', 'cuanto cuesta', 'valor', 'costo', 'simular', 'calcula', 'calculame', 'presupuesto', 'cuanto es la cuota', 'plazo', 'meses', 'años'],
+        legales: ['legal', 'legales', 'papeles', 'papel', 'sunarp', 'titulo', 'título', 'escritura', 'minuta', 'tramites', 'trámites', 'documentos', 'documento', 'inscrito', 'inscripcion', 'independizacion', 'independización', 'registral', 'copia literal', 'gravamen', 'hipoteca', 'propiedad'],
+        servicios: ['agua', 'luz', 'desague', 'desagüe', 'servicios', 'electricidad', 'luz electrica', 'alcantarillado', 'pistas', 'calles', 'pavimentado', 'pavimento'],
+        ubicacion: ['ubicacion', 'ubicación', 'donde esta', 'donde queda', 'donde quedan', 'como llegar', 'direccion', 'dirección', 'mapa', 'ubicado', 'zona', 'distrito', 'referencia'],
+        contacto: ['contacto', 'contactar', 'telefono', 'teléfono', 'celular', 'whatsapp', 'wsp', 'wasap', 'llamar', 'llamame', 'escribir', 'correo', 'email', 'comunicar', 'asesor', 'asesora', 'hablar con alguien'],
+        educacion: ['educacion', 'educación', 'aprender', 'guia', 'guía', 'guias', 'informacion', 'información', 'tips', 'consejos', 'preventa', 'mivivienda', 'mi vivienda', 'techo propio', 'bono', 'hipotecario', 'lotizacion', 'lotización', 'habilitacion', 'habilitación', 'documentos pedir', 'ahorrar banco', 'banco vs terreno'],
+        navegacion: ['ir a', 'llevarme', 'lleva', 'abrir', 'ver pagina', 'ver página', 'mostrar pagina', 'entrar a', 'redirigir', 'pasame a', 'quiero ir', 'ver el proyecto', 'ver proyecto', 'pagina de', 'pestaña'],
+        visita: ['visita', 'visitar', 'conocer', 'ir a ver', 'recorrido', 'tour', 'ver terreno', 'ver el lote', 'ir al terreno', 'agendar', 'cita'],
+        despedidas: ['adios', 'adiós', 'chau', 'chao', 'hasta luego', 'nos vemos', 'bye', 'hasta pronto', 'me voy', 'cerrar'],
+        agradecimientos: ['gracias', 'muy amable', 'te agradezco', 'mil gracias', 'muchas gracias', 'excelente', 'muy bien', 'buen trabajo', 'bien hecho', 'perfecto', 'genial', 'bacan', 'bakan', 'me ayudaste', 'listo gracias'],
+        afirmaciones: ['si', 'sí', 'claro', 'ok', 'okay', 'dale', 'vamos', 'adelante', 'me interesa', 'si me interesa', 'sí me interesa', 'me gusta', 'por supuesto', 'de acuerdo', 'confirmo', 'ese', 'ese mismo', 'ese proyecto'],
+        negaciones: ['no', 'nop', 'nope', 'todavia no', 'aun no', 'después', 'despues', 'luego', 'otro dia'],
+        ayuda: ['ayuda', 'help', 'soporte', 'asistencia', 'que puedes hacer', 'que sabes', 'funciones', 'capacidades', 'como funciona', 'que haces']
     };
 
     // Crear elementos del DOM
@@ -134,6 +159,7 @@
             windowEl.classList.remove('active');
         } else {
             windowEl.classList.add('active');
+            chatActivo = true;
             notification.style.display = 'none';
             if (estado.historial.length === 0) {
                 mostrarMensajeBienvenida();
@@ -148,6 +174,80 @@
 
     function closeChatbot() {
         document.getElementById('chatbot-window').classList.remove('active');
+        reiniciarSesion();
+        chatActivo = false;
+    }
+
+    function reiniciarSesion() {
+        estado = crearEstadoInicial();
+        const messages = document.getElementById('chatbot-messages');
+        const quick = document.getElementById('chatbot-quick-actions');
+        if (messages) messages.innerHTML = '';
+        if (quick) quick.innerHTML = '';
+        ocultarEscribiendo();
+    }
+
+    function normalizarTexto(texto) {
+        return texto.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^\w\s]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function registrarEnMemoria(tipo, texto) {
+        estado.memoria.push({ tipo: tipo, texto: texto, tiempo: Date.now() });
+        if (estado.memoria.length > 14) estado.memoria.shift();
+        if (tipo === 'user') {
+            const proyecto = detectarProyectoEnTexto(normalizarTexto(texto));
+            if (proyecto) estado.contextoProyecto = proyecto;
+        }
+    }
+
+    function obtenerContextoUsuario() {
+        return estado.memoria
+            .filter(function(m) { return m.tipo === 'user'; })
+            .slice(-5)
+            .map(function(m) { return m.texto; })
+            .join(' ');
+    }
+
+    function detectarProyectoEnTexto(textoNorm) {
+        if (contieneAlguna(textoNorm, ['palma real', 'pimentel', 'playa', 'palma'])) return 'palma real';
+        if (contieneAlguna(textoNorm, ['reque mar', 'requemar', 'reque'])) return 'requemar';
+        return null;
+    }
+
+    function detectarDestinoNavegacion(textoNorm) {
+        if (contieneAlguna(textoNorm, KNOWLEDGE_BASE.navegacion) || textoNorm.includes('ver ') || textoNorm.includes('ir ')) {
+            const proyecto = detectarProyectoEnTexto(textoNorm);
+            if (proyecto) return proyecto;
+            if (contieneAlguna(textoNorm, ['educacion', 'guia', 'guias', 'aprender', 'tips'])) return 'educacion';
+            if (contieneAlguna(textoNorm, ['cotiz', 'cuota', 'precio', 'calcular'])) return 'cotizacion';
+            if (contieneAlguna(textoNorm, ['nosotros', 'empresa', 'quienes son'])) return 'nosotros';
+            if (contieneAlguna(textoNorm, ['proyecto', 'lotes', 'terrenos', 'catalogo'])) return 'proyectos';
+            if (contieneAlguna(textoNorm, ['inicio', 'home', 'portada'])) return 'inicio';
+        }
+        if (estado.contextoProyecto && contieneAlguna(textoNorm, ['verlo', 'ver ese', 'mostrar', 'pagina', 'entrar', 'ir alla', 'ir allá', 'llevarme', 'abrir'])) {
+            return estado.contextoProyecto;
+        }
+        return null;
+    }
+
+    function redirigirPagina(destinoKey) {
+        const ruta = NAV_ROUTES[destinoKey];
+        if (!ruta) return false;
+        cambiarImagen('confirmar');
+        agregarMensaje(
+            '¡Listo! Te llevo a <strong>' + ruta.label + '</strong> 🚀<br><br>' +
+            'En un segundito se abre la página...',
+            'bot'
+        );
+        setTimeout(function() {
+            window.location.href = ruta.url;
+        }, 1400);
+        return true;
     }
 
     function cambiarImagen(contexto) {
@@ -186,6 +286,7 @@
         container.scrollTop = container.scrollHeight;
 
         estado.historial.push({ tipo: tipo, texto: texto, tiempo: new Date() });
+        registrarEnMemoria(tipo, texto.replace(/<[^>]+>/g, ' '));
 
         if (opciones && opciones.length > 0) {
             mostrarOpcionesRapidas(opciones);
@@ -273,6 +374,58 @@
 
     function procesarRespuesta(texto) {
         const lowerText = texto.toLowerCase();
+        const textoNorm = normalizarTexto(texto);
+        const contextoUsuario = obtenerContextoUsuario();
+        const textoCompleto = (contextoUsuario + ' ' + textoNorm).trim();
+
+        // Navegación a páginas del sitio
+        if (texto.indexOf('nav ') === 0) {
+            redirigirPagina(texto.replace('nav ', '').trim());
+            return;
+        }
+
+        if (texto.indexOf('info ') === 0) {
+            const key = texto.replace('info ', '').trim();
+            if (key === 'palma real') { mostrarInfoProyecto('palma real'); return; }
+            if (key === 'requemar' || key === 'reque') { mostrarInfoProyecto('requemar'); return; }
+        }
+
+        if (texto.indexOf('cotizar ') === 0) {
+            const key = texto.replace('cotizar ', '').trim();
+            if (key === 'palma real') { iniciarCotizacion('palma real'); return; }
+            if (key === 'requemar' || key === 'reque') { iniciarCotizacion('requemar'); return; }
+            if (key === 'indefinido') {
+                estado.datosCotizacion.proyecto = 'indefinido';
+                continuarCotizacionInicial();
+                return;
+            }
+        }
+
+        if (texto.indexOf('inicial ') === 0) {
+            const pct = parseInt(texto.split(' ')[1], 10);
+            if (!isNaN(pct) && pct >= 5 && pct <= 50) {
+                estado.datosCotizacion.cuotaInicial = pct;
+                if (estado.paso !== 'cotizacion_inicial') estado.paso = 'cotizacion_inicial';
+                continuarCotizacionPlazo();
+                return;
+            }
+        }
+
+        if (texto.indexOf('plazo ') === 0) {
+            const meses = parseInt(texto.split(' ')[1], 10);
+            if (!isNaN(meses) && meses >= 12 && meses <= 120) {
+                estado.datosCotizacion.plazo = meses;
+                if (estado.paso !== 'cotizacion_plazo') estado.paso = 'cotizacion_plazo';
+                mostrarResultadoCotizacion();
+                return;
+            }
+        }
+
+        const destinoNav = detectarDestinoNavegacion(textoNorm);
+        if (destinoNav && (contieneAlguna(textoNorm, KNOWLEDGE_BASE.navegacion) || contieneAlguna(textoNorm, ['ver', 'ir', 'abrir', 'mostrar', 'pagina', 'pestaña']))) {
+            redirigirPagina(destinoNav);
+            return;
+        }
 
         // ===== 0. DETECTAR SI EL USUARIO QUIERE CAMBIAR DE TEMA O PROYECTO =====
         // Si está en un flujo de cotización pero escribe algo como "que terrenos tienes", salir del flujo
@@ -520,14 +673,43 @@
         // Detectar respuestas afirmativas después de "¿Te interesa?"
         // Solo cortas y claras - evitar palabras ambiguas como 'quiero' que pueden usarse en otras frases
         const proyectoContexto = estado.contextoProyecto || estado.datosCotizacion.proyecto;
-        const respuestaAfirmativa = contieneAlguna(lowerText, ['me interesa', 'si me interesa', 'sí me interesa', 'me gusta', 'si quiero', 'perfecto', 'adelante', 'dale', 'vamos']);
+        const respuestaAfirmativa = contieneAlguna(textoNorm, KNOWLEDGE_BASE.afirmaciones);
+        const mencionaOtroProyecto = detectarProyectoEnTexto(textoNorm);
         
-        // Verificar que NO sea una consulta sobre otro proyecto
-        const mencionaOtroProyecto = contieneAlguna(lowerText, ['palma real', 'pimentel', 'reque', 'requemar']);
-        
-        if (respuestaAfirmativa && proyectoContexto && !mencionaOtroProyecto) {
-            // Iniciar cotización con el proyecto activo
+        if (respuestaAfirmativa && proyectoContexto && (!mencionaOtroProyecto || mencionaOtroProyecto === proyectoContexto)) {
+            if (estado.ultimaIntencion === 'info_proyecto' || estado.paso === 'inicio') {
+                const ruta = NAV_ROUTES[proyectoContexto];
+                cambiarImagen('confirmar');
+                agregarMensaje(
+                    '¡Qué bueno que te interese <strong>' + ((CONFIG.proyectos[proyectoContexto] && CONFIG.proyectos[proyectoContexto].nombre) || 'el proyecto') + '</strong>! 🏡<br><br>' +
+                    '¿Quieres que te lleve a ver todos los detalles?',
+                    'bot',
+                    [
+                        { texto: '✅ Sí, ver el proyecto', valor: 'nav ' + proyectoContexto },
+                        { texto: '💰 Cotizar cuotas', valor: 'cotizar ' + proyectoContexto },
+                        { texto: '📅 Agendar visita', valor: 'visita' }
+                    ]
+                );
+                return;
+            }
             iniciarCotizacion(proyectoContexto);
+            return;
+        }
+
+        if (contieneAlguna(textoNorm, KNOWLEDGE_BASE.educacion)) {
+            estado.ultimaIntencion = 'educacion';
+            cambiarImagen('ensenando');
+            agregarMensaje(
+                'En <strong>Educación</strong> tenemos guías bien claras 📚<br><br>' +
+                'Preventa, MiVivienda, Techo Propio, papeles, financiamiento y más.<br><br>' +
+                '¿Te llevo a esa sección?',
+                'bot',
+                [
+                    { texto: '📚 Ir a Educación', valor: 'nav educacion' },
+                    { texto: '🏠 Ver proyectos', valor: 'proyectos' },
+                    { texto: '💰 Cotizar', valor: 'cotizar' }
+                ]
+            );
             return;
         }
 
@@ -771,9 +953,9 @@
         const proyecto = CONFIG.proyectos[proyectoKey];
         if (!proyecto) return;
 
-        // Guardar el proyecto activo en el estado para mantener contexto
         estado.datosCotizacion.proyecto = proyectoKey;
         estado.contextoProyecto = proyectoKey;
+        estado.ultimaIntencion = 'info_proyecto';
 
         const caracteristicasSimples = proyecto.caracteristicas.slice(0, 3).map(function(c) { return '✓ ' + c; }).join('<br>');
 
@@ -785,9 +967,10 @@
             '💳 Cuotas desde: ' + proyecto.cuotaDesde + ' soles al mes<br><br>' +
             'Lo que incluye:<br>' +
             caracteristicasSimples + '<br><br>' +
-            '¿Te interesa?',
+            '¿Te interesa? Puedo llevarte a la página del proyecto.',
             'bot',
             [
+                { texto: '👀 Ver página del proyecto', valor: 'nav ' + proyectoKey },
                 { texto: '💰 Quiero saber mis cuotas', valor: 'cotizar ' + proyectoKey },
                 { texto: '📅 Quiero visitarlo', valor: 'visita' },
                 { texto: '🏠 Ver el otro terreno', valor: 'proyectos' }
@@ -815,7 +998,7 @@
             'bot',
             [
                 { texto: '💰 10% (mínimo)', valor: 'inicial 10' },
-                { texto: '� 20%', valor: 'inicial 20' },
+                { texto: '💰 20%', valor: 'inicial 20' },
                 { texto: '💰 30%', valor: 'inicial 30' },
                 { texto: '💰 50% (máximo)', valor: 'inicial 50' }
             ]
@@ -983,8 +1166,8 @@
         toggle: toggleChatbot,
         estado: function() { return estado; },
         reset: function() {
-            estado = { paso: 'inicio', contexto: 'bienvenida', datosCotizacion: {}, historial: [] };
-            document.getElementById('chatbot-messages').innerHTML = '';
+            reiniciarSesion();
+            chatActivo = true;
             mostrarMensajeBienvenida();
         }
     };

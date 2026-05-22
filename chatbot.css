@@ -475,44 +475,56 @@
     animation: chatbotEntrance 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s both;
 }
 
-/* Tema oscuro (automático) */
-@media (prefers-color-scheme: dark) {
-    #urbeq-chatbot {
-        --chatbot-bg: #1A202C;
-    }
-    
-    .chatbot-messages,
-    .chatbot-quick-actions {
-        background: #1A202C;
-        border-color: #4A5568;
-    }
-    
-    .message-content {
-        background: #2D3748;
-        color: #E2E8F0;
-    }
-    
-    .message.user .message-content {
-        background: var(--chatbot-primary);
-        color: white;
-    }
-    
-    .message-avatar {
-        background: #2D3748;
-    }
-    
-    #chatbot-input {
-        background: #2D3748;
-        border-color: #4A5568;
-        color: #E2E8F0;
-    }
-    
-    .chatbot-input-area {
-        background: #1A202C;
-        border-color: #4A5568;
-    }
-    
-    .quick-action-btn {
-        background: #2D3748;
-    }
+/* Tema oscuro — sincronizado con data-theme del sitio */
+:root[data-theme='dark'] #urbeq-chatbot {
+    --chatbot-bg: #1C1917;
+    --chatbot-primary: #F26A1B;
+    --chatbot-primary-dark: #D95A12;
+}
+
+:root[data-theme='dark'] .chatbot-window {
+    border: 1px solid #44403C;
+}
+
+:root[data-theme='dark'] .chatbot-messages,
+:root[data-theme='dark'] .chatbot-quick-actions {
+    background: #141210;
+    border-color: #44403C;
+}
+
+:root[data-theme='dark'] .message.bot .message-content {
+    background: #292524;
+    color: #FAFAF9;
+}
+
+:root[data-theme='dark'] .message.user .message-content {
+    background: linear-gradient(135deg, #F26A1B 0%, #D95A12 100%);
+    color: #fff;
+}
+
+:root[data-theme='dark'] #chatbot-input {
+    background: #292524;
+    border-color: #57534E;
+    color: #FAFAF9;
+}
+
+:root[data-theme='dark'] .chatbot-input-area {
+    background: #1C1917;
+    border-color: #44403C;
+}
+
+:root[data-theme='dark'] .quick-action-btn {
+    background: #292524;
+    color: #FAFAF9;
+    border-color: #57534E;
+}
+
+:root[data-theme='dark'] .quick-action-btn:hover {
+    background: #353230;
+    border-color: #F26A1B;
+}
+
+:root[data-theme='light'] #urbeq-chatbot {
+    --chatbot-primary: #F26A1B;
+    --chatbot-primary-dark: #D95A12;
 }
