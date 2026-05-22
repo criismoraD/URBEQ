@@ -59,7 +59,7 @@ function initGlobalNavAndLogos() {
         const isFooterLogo = classPrefix === 'footer-logo';
         const logoDefaultSrc = isFooterLogo ? 'img/LOGO BLANCO NARANJA.png' : 'img/PNG NARANJA Y GRIS.png';
         const logoDarkSrc = 'img/LOGO BLANCO NARANJA.png';
-        const logoMobileSrc = isFooterLogo ? 'img/LOGO BLANCO NARANJA.png' : 'img/ISOTIPO NARANJA.png';
+        const logoMobileSrc = isFooterLogo ? 'img/LOGO BLANCO NARANJA.png' : 'img/PNG NARANJA Y GRIS VERTICAL.png';
 
         let logoDefault = anchor.querySelector(`.${classPrefix}-default`);
         let logoDark = anchor.querySelector(`.${classPrefix}-dark`);

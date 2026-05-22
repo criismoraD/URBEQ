@@ -15,8 +15,8 @@
     --primary-container: #ff8200;
     --on-primary: #ffffff;
     --on-primary-container: #ffffff;
-    --on-primary-fixed-variant: #F26A1B;
-    --on-primary-fixed: #F26A1B;
+    --on-primary-fixed-variant: #ffffff;
+    --on-primary-fixed: #ffffff;
     --primary-fixed: #F26A1B;
     --primary-fixed-dim: #F26A1B;
     --inverse-primary: #F26A1B;
@@ -231,8 +231,9 @@ input {
 }
 
 .brand {
-    color: var(--on-surface);
-    font-weight: 700;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
 }
 
 .norteno-divider {

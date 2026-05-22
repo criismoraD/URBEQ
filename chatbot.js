@@ -44,6 +44,38 @@
                 cuotaDesde: 490,
                 caracteristicas: ['Lotes desde 140m²', 'Zona en crecimiento', 'Plusvalía garantizada', 'Financiamiento directo'],
                 url: 'proyecto-requemar.html'
+            },
+            'sol y arena': {
+                nombre: 'Sol y Arena',
+                ubicacion: 'Pimentel, con vista al mar',
+                precioTotal: 95000,
+                cuotaDesde: 620,
+                caracteristicas: ['Lotes desde 150m²', 'Vista al mar', 'Agua y luz', 'Entrega inmediata'],
+                url: 'proyectos.html'
+            },
+            'solarena': {
+                nombre: 'Sol y Arena',
+                ubicacion: 'Pimentel, con vista al mar',
+                precioTotal: 95000,
+                cuotaDesde: 620,
+                caracteristicas: ['Lotes desde 150m²', 'Vista al mar', 'Agua y luz', 'Entrega inmediata'],
+                url: 'proyectos.html'
+            },
+            'jardines del norte': {
+                nombre: 'Jardines del Norte',
+                ubicacion: 'Chiclayo norte, zona residencial',
+                precioTotal: 65000,
+                cuotaDesde: 420,
+                caracteristicas: ['Lotes desde 130m²', 'Zona residencial', 'Servicios completos', 'Fácil acceso'],
+                url: 'proyectos.html'
+            },
+            'jardines': {
+                nombre: 'Jardines del Norte',
+                ubicacion: 'Chiclayo norte, zona residencial',
+                precioTotal: 65000,
+                cuotaDesde: 420,
+                caracteristicas: ['Lotes desde 130m²', 'Zona residencial', 'Servicios completos', 'Fácil acceso'],
+                url: 'proyectos.html'
             }
         }
     };
@@ -54,7 +86,11 @@
         'palma real': { url: 'proyecto-palma-real.html', label: 'Palma Real' },
         requemar: { url: 'proyecto-requemar.html', label: 'Reque Mar' },
         reque: { url: 'proyecto-requemar.html', label: 'Reque Mar' },
-        pimentel: { url: 'proyecto-palma-real.html', label: 'Palma Real' },
+        'sol y arena': { url: 'proyectos.html', label: 'Sol y Arena' },
+        solarena: { url: 'proyectos.html', label: 'Sol y Arena' },
+        'jardines del norte': { url: 'proyectos.html', label: 'Jardines del Norte' },
+        jardines: { url: 'proyectos.html', label: 'Jardines del Norte' },
+        pimentel: { url: 'proyectos.html', label: 'Sol y Arena' },
         educacion: { url: 'educacion.html', label: 'Educación' },
         cotizacion: { url: 'cotizacion.html', label: 'Cotización' },
         cotiza: { url: 'cotizacion.html', label: 'Cotización' },
@@ -87,7 +123,7 @@
 
     const KNOWLEDGE_BASE = {
         saludos: ['hola', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'saludos', 'que tal', 'como estas', 'buen dia', 'que hubo', 'holis'],
-        proyectos: ['proyecto', 'proyectos', 'lotes', 'casas', 'terrenos', 'palma real', 'requemar', 'reque mar', 'reque', 'pimentel', 'playa', 'mar', 'chiclayo', 'lambayeque', 'monsefu', 'disponibles', 'disponible', 'catalogo', 'opciones', 'inventario', 'venden', 'ofrecen', 'tienen', 'hay', 'cuales son', 'que tienen', 'ver proyecto', 'mostrar proyecto', 'urbanizacion', 'urbanización'],
+        proyectos: ['proyecto', 'proyectos', 'lotes', 'casas', 'terrenos', 'palma real', 'requemar', 'reque mar', 'reque', 'sol y arena', 'solarena', 'jardines del norte', 'jardines', 'pimentel', 'playa', 'mar', 'chiclayo', 'lambayeque', 'monsefu', 'disponibles', 'disponible', 'catalogo', 'opciones', 'inventario', 'venden', 'ofrecen', 'tienen', 'hay', 'cuales son', 'que tienen', 'ver proyecto', 'mostrar proyecto', 'urbanizacion', 'urbanización'],
         cotizacion: ['cotizar', 'cotizacion', 'cotiza', 'precio', 'precios', 'cuota', 'cuotas', 'mensual', 'mensualidad', 'financiamiento', 'financiar', 'pagar', 'inicial', 'enganche', 'cuanto sale', 'cuanto cuesta', 'valor', 'costo', 'simular', 'calcula', 'calculame', 'presupuesto', 'cuanto es la cuota', 'plazo', 'meses', 'años'],
         legales: ['legal', 'legales', 'papeles', 'papel', 'sunarp', 'titulo', 'título', 'escritura', 'minuta', 'tramites', 'trámites', 'documentos', 'documento', 'inscrito', 'inscripcion', 'independizacion', 'independización', 'registral', 'copia literal', 'gravamen', 'hipoteca', 'propiedad'],
         servicios: ['agua', 'luz', 'desague', 'desagüe', 'servicios', 'electricidad', 'luz electrica', 'alcantarillado', 'pistas', 'calles', 'pavimentado', 'pavimento'],
@@ -216,6 +252,8 @@
     function detectarProyectoEnTexto(textoNorm) {
         if (contieneAlguna(textoNorm, ['palma real', 'pimentel', 'playa', 'palma'])) return 'palma real';
         if (contieneAlguna(textoNorm, ['reque mar', 'requemar', 'reque'])) return 'requemar';
+        if (contieneAlguna(textoNorm, ['sol y arena', 'solarena', 'sol arena', 'arena'])) return 'sol y arena';
+        if (contieneAlguna(textoNorm, ['jardines del norte', 'jardines', 'norte', 'zona residencial'])) return 'jardines del norte';
         return null;
     }
 
@@ -388,12 +426,16 @@
             const key = texto.replace('info ', '').trim();
             if (key === 'palma real') { mostrarInfoProyecto('palma real'); return; }
             if (key === 'requemar' || key === 'reque') { mostrarInfoProyecto('requemar'); return; }
+            if (key === 'sol y arena' || key === 'solarena') { mostrarInfoProyecto('sol y arena'); return; }
+            if (key === 'jardines del norte' || key === 'jardines') { mostrarInfoProyecto('jardines del norte'); return; }
         }
 
         if (texto.indexOf('cotizar ') === 0) {
             const key = texto.replace('cotizar ', '').trim();
             if (key === 'palma real') { iniciarCotizacion('palma real'); return; }
             if (key === 'requemar' || key === 'reque') { iniciarCotizacion('requemar'); return; }
+            if (key === 'sol y arena' || key === 'solarena') { iniciarCotizacion('sol y arena'); return; }
+            if (key === 'jardines del norte' || key === 'jardines') { iniciarCotizacion('jardines del norte'); return; }
             if (key === 'indefinido') {
                 estado.datosCotizacion.proyecto = 'indefinido';
                 continuarCotizacionInicial();
@@ -444,41 +486,22 @@
         const mencionaReque = contieneAlguna(lowerText, ['reque', 'requemar']);
         
         if ((estado.paso === 'cotizacion_inicial' || estado.paso === 'cotizacion_plazo') && proyectoActivo) {
-            if (proyectoActivo === 'requemar' && mencionaPalmaReal) {
-                // Cambiar a Palma Real
-                estado.datosCotizacion.proyecto = 'palma real';
+            const nuevoProyecto = mencionaPalmaReal ? 'palma real' :
+                (mencionaReque ? 'requemar' :
+                (contieneAlguna(lowerText, ['sol y arena', 'solarena', 'arena']) ? 'sol y arena' :
+                (contieneAlguna(lowerText, ['jardines del norte', 'jardines', 'norte']) ? 'jardines del norte' : null)));
+
+            if (nuevoProyecto && nuevoProyecto !== proyectoActivo) {
+                const proyectoData = CONFIG.proyectos[nuevoProyecto];
+                estado.datosCotizacion.proyecto = nuevoProyecto;
                 estado.datosCotizacion.cuotaInicial = null;
                 estado.datosCotizacion.plazo = null;
-                estado.contextoProyecto = 'palma real';
-                const precio = 85000;
+                estado.contextoProyecto = nuevoProyecto;
+                const precio = proyectoData.precioTotal;
                 estado.datosCotizacion.precio = precio;
                 cambiarImagen('explicando');
                 agregarMensaje(
-                    '¡Perfecto! Cambiamos a <strong>Palma Real</strong> 💰<br><br>' +
-                    'Precio: ' + precio.toLocaleString() + ' soles<br><br>' +
-                    '¿Qué porcentaje puedes pagar al inicio?<br>' +
-                    '(Mínimo 5%, máximo 50%)',
-                    'bot',
-                    [
-                        { texto: '💰 10% (mínimo)', valor: 'inicial 10' },
-                        { texto: '💰 20%', valor: 'inicial 20' },
-                        { texto: '💰 30%', valor: 'inicial 30' },
-                        { texto: '💰 50% (máximo)', valor: 'inicial 50' }
-                    ]
-                );
-                return;
-            }
-            if (proyectoActivo === 'palma real' && mencionaReque) {
-                // Cambiar a Reque Mar
-                estado.datosCotizacion.proyecto = 'requemar';
-                estado.datosCotizacion.cuotaInicial = null;
-                estado.datosCotizacion.plazo = null;
-                estado.contextoProyecto = 'requemar';
-                const precio = 72000;
-                estado.datosCotizacion.precio = precio;
-                cambiarImagen('explicando');
-                agregarMensaje(
-                    '¡Perfecto! Cambiamos a <strong>Reque Mar</strong> 💰<br><br>' +
+                    '¡Perfecto! Cambiamos a <strong>' + proyectoData.nombre + '</strong> 💰<br><br>' +
                     'Precio: ' + precio.toLocaleString() + ' soles<br><br>' +
                     '¿Qué porcentaje puedes pagar al inicio?<br>' +
                     '(Mínimo 5%, máximo 50%)',
@@ -507,6 +530,16 @@
                 continuarCotizacionInicial();
                 return;
             }
+            if (contieneAlguna(lowerText, ['sol y arena', 'solarena', 'sol arena', 'arena'])) {
+                estado.datosCotizacion.proyecto = 'sol y arena';
+                continuarCotizacionInicial();
+                return;
+            }
+            if (contieneAlguna(lowerText, ['jardines del norte', 'jardines', 'norte', 'zona residencial'])) {
+                estado.datosCotizacion.proyecto = 'jardines del norte';
+                continuarCotizacionInicial();
+                return;
+            }
             if (contieneAlguna(lowerText, ['no se', 'cualquiera', 'los dos', 'ambos', 'indiferente'])) {
                 estado.datosCotizacion.proyecto = 'indefinido';
                 continuarCotizacionInicial();
@@ -519,11 +552,15 @@
                 'Dime solo:<br>' +
                 '• "Palma Real" (el de la playa)<br>' +
                 '• "Reque Mar" (el de Reque)<br>' +
+                '• "Sol y Arena" (el lote con vista al mar)<br>' +
+                '• "Jardines del Norte" (zona residencial)<br>' +
                 '• O "No sé aún"',
                 'bot',
                 [
                     { texto: '🏖️ Palma Real', valor: 'cotizar palma real' },
                     { texto: '📈 Reque Mar', valor: 'cotizar requemar' },
+                    { texto: '🌊 Sol y Arena', valor: 'cotizar sol y arena' },
+                    { texto: '🌿 Jardines del Norte', valor: 'cotizar jardines del norte' },
                     { texto: '🤔 No sé aún', valor: 'cotizar indefinido' }
                 ]
             );
@@ -933,18 +970,26 @@
             '<strong>Opción 1: Palma Real</strong><br>' +
             '📍 En Pimentel, cerca del mar<br>' +
             '💰 Precio: desde 85,000 soles<br>' +
-            '� Tamaño: desde 160 metros cuadrados<br><br>' +
+            '📏 Tamaño: desde 160 metros cuadrados<br><br>' +
             '<strong>Opción 2: Reque Mar</strong><br>' +
-            '� En Reque, sur de Chiclayo<br>' +
+            '📍 En Reque, sur de Chiclayo<br>' +
             '💰 Precio: desde 72,000 soles<br>' +
-            '� Tamaño: desde 140 metros cuadrados<br><br>' +
+            '📏 Tamaño: desde 140 metros cuadrados<br><br>' +
+            '<strong>Opción 3: Sol y Arena</strong><br>' +
+            '📍 En Pimentel, con vista al mar<br>' +
+            '💰 Precio: desde 95,000 soles<br>' +
+            '📏 Lotes desde 150 metros cuadrados<br><br>' +
+            '<strong>Opción 4: Jardines del Norte</strong><br>' +
+            '📍 Chiclayo norte, zona residencial<br>' +
+            '💰 Precio: desde 65,000 soles<br>' +
+            '📏 Lotes desde 130 metros cuadrados<br><br>' +
             '¿Cuál te interesa más?',
             'bot',
             [
-                { texto: '🏖️ El de la playa (Palma Real)', valor: 'info palma real' },
-                { texto: '📈 El de Reque', valor: 'info requemar' },
-                { texto: '💰 Quiero saber cuotas', valor: 'cotizar' },
-                { texto: '📅 Quiero visitarlos', valor: 'visita' }
+                { texto: '🏖️ Palma Real', valor: 'info palma real' },
+                { texto: '📈 Reque Mar', valor: 'info requemar' },
+                { texto: '🌊 Sol y Arena', valor: 'info sol y arena' },
+                { texto: '🌿 Jardines del Norte', valor: 'info jardines del norte' }
             ]
         );
     }
@@ -984,9 +1029,10 @@
             estado.paso = 'cotizacion_inicial';
             estado.datosCotizacion = { proyecto: proyectoEspecifico, cuotaInicial: null, plazo: null };
             
-            const precio = proyectoEspecifico === 'palma real' ? 85000 : 72000;
+            const proyectoData = CONFIG.proyectos[proyectoEspecifico];
+            const precio = proyectoData.precioTotal;
             estado.datosCotizacion.precio = precio;
-            const nombreProyecto = proyectoEspecifico === 'palma real' ? 'Palma Real' : 'Reque Mar';
+            const nombreProyecto = proyectoData.nombre;
             
             cambiarImagen('explicando');
             agregarMensaje(
@@ -1018,6 +1064,8 @@
             [
                 { texto: '🏖️ Palma Real (85,000 soles)', valor: 'cotizar palma real' },
                 { texto: '📈 Reque Mar (72,000 soles)', valor: 'cotizar requemar' },
+                { texto: '🌊 Sol y Arena (95,000 soles)', valor: 'cotizar sol y arena' },
+                { texto: '🌿 Jardines del Norte (65,000 soles)', valor: 'cotizar jardines del norte' },
                 { texto: '🤔 Aún no sé cuál', valor: 'cotizar indefinido' }
             ]
         );
@@ -1031,12 +1079,9 @@
         let nombreProyecto = 'el terreno';
         let precio = 78500; // Promedio
 
-        if (proyecto === 'palma real') {
-            nombreProyecto = 'Palma Real';
-            precio = 85000;
-        } else if (proyecto === 'requemar') {
-            nombreProyecto = 'Reque Mar';
-            precio = 72000;
+        if (CONFIG.proyectos[proyecto]) {
+            nombreProyecto = CONFIG.proyectos[proyecto].nombre;
+            precio = CONFIG.proyectos[proyecto].precioTotal;
         }
 
         estado.datosCotizacion.precio = precio;
@@ -1110,8 +1155,7 @@
 
         const proyecto = estado.datosCotizacion.proyecto;
         let nombreProyecto = 'Terreno';
-        if (proyecto === 'palma real') nombreProyecto = 'Palma Real';
-        else if (proyecto === 'requemar') nombreProyecto = 'Reque Mar';
+        if (CONFIG.proyectos[proyecto]) nombreProyecto = CONFIG.proyectos[proyecto].nombre;
 
         agregarMensaje(
             '🎉 <strong>Tu cotización está lista</strong><br><br>' +
